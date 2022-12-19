@@ -13,7 +13,7 @@ Widget buttonWidget(String string, double width, VoidCallback voidCallback) {
     onTap: voidCallback,
     child: Container(
       height: 49.h,
-      width: 216.w,
+      width: width.w,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: kBlack,
@@ -22,7 +22,7 @@ Widget buttonWidget(String string, double width, VoidCallback voidCallback) {
       child: Text(
         string,
         style:
-            const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+            const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
       ),
     ),
   );

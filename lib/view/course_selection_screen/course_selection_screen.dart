@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:ielts/dependency/dependency.dart';
+import 'package:ielts/view/common/background_onboarding/background_onboarding.dart';
 import 'package:ielts/view/common/button_widget.dart';
+import 'package:ielts/view/common/constants.dart';
+import 'package:ielts/view/course_selection_screen/widgets/choice.dart';
+import 'package:ielts/view/registration_screen/registration_screen.dart';
 
 import '../common/background_clipper.dart';
 import '../common/common.dart';
@@ -13,39 +19,52 @@ class CouseSelectionScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            // height: screenHeight,
-            // width: screenWidth,
-            decoration: boxDecorSplash("assets/images/splash_bg_2.png"),
-            child: ClipPath(
-              clipper: BackgroundClipper(),
-              child: Container(
-                decoration: boxDecorSplash("assets/images/spash_bg.png"),
-              ),
-            ),
-          ),
+          const BackgroundClipperWidget(),
           SafeArea(
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SizedBox(),
+                  const Spacer(),
                   Image.asset(
                     "assets/images/logo.png",
                     height: 100.h,
                     width: 100.w,
                   ),
-                  Text("Are you looking for ?"),
-
+                  const Spacer(),
+                  Column(
+                    children: [
+                      Text(
+                        "Are you looking for ?",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20.sp,
+                            color: kBlack),
+                      ),
+                      kHeight15,
+                      choiceWidget(),
+                    ],
+                  ),
+                  const Spacer(
+                    flex: 2,
+                  ),
                   buttonWidget(
                     "Continue",
-                    1,
-                    () {},
+                    216,
+                    () {
+                      if (choiceCtrl.isCoiceSelected.value) {
+                        Get.offAll(() => const RegistrationScreen(),
+                            transition: Transition.fadeIn,
+                            duration: const Duration(milliseconds: 400));
+                      } else {
+                        Get.snackbar("Error", "Please select a category",
+                            colorText: kRed);
+                      }
+                    },
                   ),
-                  // Container(
-                  //   width: ,
-                  // ),
-                  SizedBox()
+                  const Spacer(
+                    flex: 3,
+                  )
                 ],
               ),
             ),

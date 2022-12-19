@@ -9,7 +9,7 @@ class BackgroundClipper extends CustomClipper<Path> {
     ovalPath.lineTo(0, size.height / 1.3);
     // paint a curve from current position to middle of the screen
     ovalPath.quadraticBezierTo(
-        size.width / 2, size.height / 1.4, size.width, size.height / 2.5);
+        size.width / 2, size.height / 1.4, size.width, size.height / 2.2);
     ovalPath.lineTo(size.width, 0);
     // Paint a curve from current position to bottom left of screen at width * 0.1
     // ovalPath.quadraticBezierTo(width * 0.58, height * 0.8, width * 0.1, height);
