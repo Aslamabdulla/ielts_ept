@@ -18,14 +18,16 @@ class DashBoardController extends GetxController {
   Map generalData = {"category": "IELTS", "type": "General"};
   Map academicData = {"category": "IELTS", "type": "General"};
   DashBoardModel? dashboardData;
-  dashBoardFetch(Map data) async {
+  Future dashBoardFetch(bool category) async {
     try {
-      final response = await ApiCalls().postRequest(generalData, "dashboard/");
+      final response = await ApiCalls()
+          .postRequest(category ? generalData : academicData, "dashboard/");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        var temp = jsonDecode(response.body);
+        var temp = await jsonDecode(response.body);
         // print(response.body);
         dashboardData = DashBoardModel.fromJson(temp);
+        return dashboardData;
         print(dashboardData!.data.subjects);
         //  var data = DashBoardModel.
       } else {
@@ -46,7 +48,7 @@ class DashBoardController extends GetxController {
   ].obs;
   @override
   void onReady() {
-    dashBoardFetch(generalData);
+    dashBoardFetch(true);
     super.onReady();
   }
 

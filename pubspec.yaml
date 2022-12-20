@@ -41,6 +41,7 @@ dependencies:
   http: ^0.13.5
   progress_indicator: ^0.2.2
   shared_preferences: ^2.0.15
+  shimmer: ^2.0.0
   slide_switcher: ^1.1.2
 
 dev_dependencies:
