@@ -31,13 +31,15 @@ environment:
 dependencies:
   animate_do: ^3.0.2
   animations: ^2.0.7
+  auto_size_text: ^3.0.0
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.6.0
   get: ^4.6.5
   http: ^0.13.5
-
+  progress_indicator: ^0.2.2
   shared_preferences: ^2.0.15
   slide_switcher: ^1.1.2
 

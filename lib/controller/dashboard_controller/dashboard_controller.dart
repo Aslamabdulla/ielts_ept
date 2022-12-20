@@ -3,30 +3,35 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ielts/main.dart';
+import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 import 'package:ielts/services/api.dart';
 import 'package:ielts/view/common/bottom_nav_bar/widgets/category.dart';
 import 'package:ielts/view/login_screen/login_screen.dart';
 
 class DashBoardController extends GetxController {
+  RxInt switcherIndex4 = 0.obs;
   Rx<String?> token = prefs.getString("token").obs;
   RxList<bool> isSelected = [true, false].obs;
   RxInt currentBottomIndex = 0.obs;
   RxInt prevBottomIndex = 0.obs;
   Rx<String?> userName = prefs.getString("name").obs;
-  dashBoardFetch() async {
-    print(token.value);
+  Map generalData = {"category": "IELTS", "type": "General"};
+  Map academicData = {"category": "IELTS", "type": "General"};
+  DashBoardModel? dashboardData;
+  dashBoardFetch(Map data) async {
     try {
-      Map data = {"category": "IELTS", "type": "General"};
-
-      final response = await ApiCalls().postRequest(data, "dashboard/");
+      final response = await ApiCalls().postRequest(generalData, "dashboard/");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var temp = jsonDecode(response.body);
-        print(response.body);
+        // print(response.body);
+        dashboardData = DashBoardModel.fromJson(temp);
+        print(dashboardData!.data.subjects);
+        //  var data = DashBoardModel.
       } else {
-        Get.offAll(() => LoginScreen(),
-            transition: Transition.rightToLeft,
-            duration: const Duration(milliseconds: 400));
+        // Get.offAll(() => LoginScreen(),
+        //     transition: Transition.rightToLeft,
+        //     duration: const Duration(milliseconds: 400));
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -39,4 +44,13 @@ class DashBoardController extends GetxController {
     Category("Find a Course", Icons.menu_book_outlined, false),
     Category("My Account", Icons.account_box_outlined, false),
   ].obs;
+  @override
+  void onReady() {
+    dashBoardFetch(generalData);
+    super.onReady();
+  }
+
+  calculatePercentage() {
+    try {} catch (e) {}
+  }
 }

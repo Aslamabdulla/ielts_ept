@@ -11,8 +11,8 @@ import 'package:ielts/view/registration_screen/registration_screen.dart';
 import '../common/background_clipper.dart';
 import '../common/common.dart';
 
-class CouseSelectionScreen extends StatelessWidget {
-  const CouseSelectionScreen({super.key});
+class CourseSelectionScreen extends StatelessWidget {
+  const CourseSelectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +34,15 @@ class CouseSelectionScreen extends StatelessWidget {
                   const Spacer(),
                   Column(
                     children: [
-                      Text(
-                        "Are you looking for ?",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20.sp,
-                            color: kBlack),
+                      FittedBox(
+                        child: Text(
+                          "Are you looking for ?",
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20.sp,
+                              color: kBlack),
+                        ),
                       ),
                       kHeight15,
                       choiceWidget(),

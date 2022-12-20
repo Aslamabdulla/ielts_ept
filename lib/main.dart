@@ -27,11 +27,14 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => GetMaterialApp(
         title: 'EPT',
         theme: ThemeData(
-          textTheme: TextTheme(bodyText2: TextStyle(fontSize: 15.sp)),
+          textTheme: TextTheme(
+            bodyText2: TextStyle(fontSize: 15.sp),
+            bodyText1: TextStyle(fontSize: 16.sp),
+          ),
           fontFamily: 'Poppins',
           primarySwatch: Colors.blue,
         ),
-        home: NavigationBottomBarScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

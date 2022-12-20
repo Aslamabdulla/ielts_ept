@@ -39,8 +39,10 @@ class CategoryCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                child: Text(category.title,
-                    style: TextStyle(color: kWhite, fontSize: 8.sp)),
+                child: FittedBox(
+                  child: Text(category.title,
+                      style: TextStyle(color: kWhite, fontSize: 8.sp)),
+                ),
               ),
               kHeight5,
               category.isSelected

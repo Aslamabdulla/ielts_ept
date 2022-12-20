@@ -45,6 +45,12 @@ final kHeight15 = SizedBox(
 final kHeight20 = SizedBox(
   height: 20.h,
 );
+final kHeight25 = SizedBox(
+  height: 25.h,
+);
+final kHeight30 = SizedBox(
+  height: 30.h,
+);
 final kHeight35 = SizedBox(
   height: 35.h,
 );
@@ -62,4 +68,20 @@ List<Color> subjectsTileColor = [
   rhinoBlue,
   cranberryPink,
   deepSeaGreen
+];
+List<Color> subjectsTileProgressColor = [
+  rhinoBlue,
+  greenyBlue,
+  deepSeaGreen,
+  cranberryPink,
+];
+List<String> lessonsImages = [
+  "assets/images/lessons_book.png",
+  "assets/images/lessons_speaking.png",
+  "assets/images/lessons_reading.png"
+];
+List<String> lessonsTileName = [
+  "General English",
+  "Speaking Training",
+  "Reading Training"
 ];
