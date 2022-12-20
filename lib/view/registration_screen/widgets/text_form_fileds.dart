@@ -1,12 +1,14 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/view/common/constants.dart';
 
 Widget name(String hintText) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 0),
     child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         style: TextStyle(color: kBlack.withOpacity(.8)),
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
@@ -27,7 +29,7 @@ Widget name(String hintText) {
           if (value!.isEmpty || !RegExp(r'^[a-z A-z]+$').hasMatch(value)) {
             return "Enter correct Name";
           } else {
-            return "correctname";
+            regCtrl.name = value;
           }
         }),
   );
@@ -37,6 +39,7 @@ Widget phoneNumber(String hintText) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 0),
     child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         style: TextStyle(color: kBlack.withOpacity(.8)),
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
@@ -55,10 +58,14 @@ Widget phoneNumber(String hintText) {
         ),
         validator: (value) {
           if (value!.isEmpty ||
-              !RegExp(r'^(\+91[-\s]?)?[0]?(91)?[789]\d{9}$').hasMatch(value)) {
+              !RegExp(r'^(\[-\s]?)?[0]?(91)?[689]\d{9}$').hasMatch(value)) {
             return "Enter correct number followed by 91";
           } else {
-            return "Correctphone";
+            try {
+              regCtrl.phoneNum = value;
+            } catch (e) {
+              Get.snackbar("Error", "Please verify phone number");
+            }
           }
         }),
   );
@@ -68,6 +75,7 @@ Widget email(String hintText) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 0),
     child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         style: TextStyle(color: kBlack.withOpacity(.8)),
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
@@ -90,7 +98,7 @@ Widget email(String hintText) {
                   .hasMatch(value)) {
             return "Enter correct email";
           } else {
-            return "correct Email";
+            regCtrl.email = value;
           }
         }),
   );

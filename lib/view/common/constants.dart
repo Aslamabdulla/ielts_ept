@@ -7,11 +7,17 @@ const Color pinkishPurple = Color.fromRGBO(227, 180, 254, 1);
 const Color tealishBlue = Color.fromRGBO(182, 192, 250, 1);
 const Color lavenderBlue = Color.fromRGBO(227, 180, 254, 1);
 const Color turquiseBlue = Color.fromRGBO(86, 208, 243, 1);
+
 const Color kBlack = Colors.black;
 const Color kWhite = Colors.white;
 const Color kLightGreen = Colors.greenAccent;
 const Color kGreen = Colors.green;
 const Color kRed = Colors.red;
+const Color greenyBlue = Color.fromRGBO(76, 188, 153, 1);
+const Color rhinoBlue = Color.fromRGBO(36, 58, 115, 1);
+const Color cranberryPink = Color.fromRGBO(218, 71, 108, 1);
+const Color deepSeaGreen = Color.fromRGBO(18, 91, 80, 1);
+
 final kWidth5 = SizedBox(
   width: 5.w,
 );
@@ -46,7 +52,14 @@ List<Color> colors = [
   pinkishRed,
   rosePink,
   pinkishPurple,
-  tealishBlue,
   lavenderBlue,
+  tealishBlue,
+  // lavenderBlue,
   turquiseBlue
+];
+List<Color> subjectsTileColor = [
+  greenyBlue,
+  rhinoBlue,
+  cranberryPink,
+  deepSeaGreen
 ];

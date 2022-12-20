@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:ielts/services/api.dart';
+import 'package:ielts/view/common/background_clipper.dart';
 import 'package:ielts/view/common/background_onboarding/background_onboarding.dart';
 import 'package:ielts/view/common/button_widget.dart';
-
+import 'package:ielts/view/common/common.dart';
+import 'package:ielts/view/course_selection_screen/widgets/choice.dart';
 import 'package:ielts/view/registration_screen/widgets/text_form_fileds.dart';
 
 import '../../dependency/dependency.dart';
 import '../common/constants.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<RegistrationScreen> createState() => _RegistrationScreenState();
+  State<LoginScreen> createState() => _LoginScreenScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _LoginScreenScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -68,6 +72,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         if (formKey.currentState!.validate()) {
                           regCtrl.registerUser();
                         }
+                        // ApiCalls().postRequest("register");
+                        // print(regCtrl.email);
+                        // print(regCtrl.name);
+                        // print(regCtrl.phoneNum);
                       },
                     ),
                     // const Spacer(
