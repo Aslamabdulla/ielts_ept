@@ -8,6 +8,7 @@ import 'package:ielts/dependency/dependency.dart';
 class ApiCalls {
   // final log = logger;
   String kBaseUrl = "https://qicksale.com/ept_backend/api/";
+  String imageUrl = "https://qicksale.com/ept_backend/storage/";
   String? token = dashCtrl.token.value;
 
   Future<http.Response> postRequest(var data, String endpoint) async {
@@ -15,7 +16,7 @@ class ApiCalls {
     var response = await http.post(Uri.parse(fullUrl),
         body: data, headers: {'Authorization': 'Bearer $token'});
     // var res = jsonDecode(response.toString());
-    print(response.body);
+    // print(response.body);
     return response;
     // var res = jsonDecode(response.body);
   }

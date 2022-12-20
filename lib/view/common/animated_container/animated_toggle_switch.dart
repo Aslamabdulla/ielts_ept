@@ -14,6 +14,11 @@ class SliderWidget extends StatelessWidget {
       () => SlideSwitcher(
         onSelect: (int index) {
           dashCtrl.switcherIndex4.value = index;
+          dashCtrl.switcherIndex4.value == 0
+              ? dashCtrl.dashBoardFetch(data: dashCtrl.generalData)
+              : dashCtrl.dashBoardFetch(data: dashCtrl.academicData);
+
+          dashCtrl.update();
         },
         containerColor: Colors.black,
         containerBorder: Border.all(color: Colors.transparent),
