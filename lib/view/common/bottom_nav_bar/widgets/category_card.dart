@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ielts/view/common/bottom_nav_bar/bottom_nav.dart';
-import 'package:ielts/view/common/bottom_nav_bar/widgets/category.dart';
+import 'package:ielts/model/category_bottom_nav/category.dart';
 import 'package:ielts/view/common/constants.dart';
 
 class CategoryCard extends StatelessWidget {

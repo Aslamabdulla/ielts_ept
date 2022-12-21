@@ -54,6 +54,9 @@ final kHeight30 = SizedBox(
 final kHeight35 = SizedBox(
   height: 35.h,
 );
+final kHeight40 = SizedBox(
+  height: 40.h,
+);
 List<Color> colors = [
   pinkishRed,
   rosePink,

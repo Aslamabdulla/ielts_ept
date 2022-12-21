@@ -58,8 +58,8 @@ Widget phoneNumber(String hintText) {
         ),
         validator: (value) {
           if (value!.isEmpty ||
-              !RegExp(r'^(\[-\s]?)?[0]?(91)?[689]\d{9}$').hasMatch(value)) {
-            return "Enter correct number followed by 91";
+              !RegExp(r'^((\+91-?)|0)?[6-9]\d{9}$').hasMatch(value)) {
+            return "Enter correct number";
           } else {
             try {
               regCtrl.phoneNum = value;

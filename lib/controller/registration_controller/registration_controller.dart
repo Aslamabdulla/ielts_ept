@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/main.dart';
 import 'package:ielts/services/api.dart';
 import 'package:ielts/view/dashboard_screen/dashboard_screen.dart';
@@ -11,6 +12,7 @@ class RegistrationController extends GetxController {
   String? name;
   String? phoneNum;
   String? email;
+  Rx<String?> token = prefs.getString("token").obs;
   settoken() {}
   checkExistence() async {
     try {
@@ -23,7 +25,7 @@ class RegistrationController extends GetxController {
         print(temp["success"]);
         return true;
       } else {
-        Get.offAll(() => LoginScreen(),
+        Get.offAll(() => const LoginScreen(),
             transition: Transition.rightToLeft,
             duration: const Duration(milliseconds: 400));
         return false;
@@ -50,13 +52,15 @@ class RegistrationController extends GetxController {
           var postData = jsonDecode(response.body);
           prefs.setString("token", postData["data"]["token"]);
           prefs.setString("name", postData["data"]["name"]);
-          var token = prefs.getString("token");
+          token.value = prefs.getString("token");
           print(token);
-
+          await dashCtrl.dashBoardFetch(data: dashCtrl.generalData);
           Get.offAll(() => const HomeScreen(),
               transition: Transition.rightToLeft,
               duration: const Duration(milliseconds: 400));
+
           Get.snackbar("Success", "User registered Successfully");
+          dashCtrl.update();
         } else {
           Get.snackbar("Error", "Authentication Failed");
         }
@@ -66,5 +70,10 @@ class RegistrationController extends GetxController {
     } catch (e) {
       Get.snackbar("Error", "Invalid Request");
     }
+  }
+
+  loginUser() async {
+    Map data = {"phone": phoneNum, "email": email};
+    final response = await ApiCalls().postRequest(data, "login/");
   }
 }

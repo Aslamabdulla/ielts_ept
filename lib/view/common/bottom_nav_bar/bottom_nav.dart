@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ielts/controller/dashboard_controller/dashboard_controller.dart';
 import 'package:ielts/dependency/dependency.dart';
-import 'package:ielts/view/common/bottom_nav_bar/widgets/category.dart';
+import 'package:ielts/model/category_bottom_nav/category.dart';
 
 import 'package:ielts/view/common/constants.dart';
 

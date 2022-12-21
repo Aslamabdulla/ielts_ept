@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:ielts/main.dart';
 import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 import 'package:ielts/services/api.dart';
-import 'package:ielts/view/common/bottom_nav_bar/widgets/category.dart';
+import 'package:ielts/model/category_bottom_nav/category.dart';
 
 class DashBoardController extends GetxController {
   RxInt switcherIndex4 = 0.obs;
@@ -18,13 +18,16 @@ class DashBoardController extends GetxController {
   Map generalData = {"category": "IELTS", "type": "General"};
   Map academicData = {"category": "IELTS", "type": "Academic"};
   DashBoardModel? dashboardData;
-  Future dashBoardFetch({Map? data}) async {
+  Future<DashBoardModel?> dashBoardFetch({Map? data}) async {
     try {
+      data ??= generalData;
+
       final response = await ApiCalls().postRequest(data, "dashboard/");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
+        token = prefs.getString("token").obs;
         var temp = await jsonDecode(response.body);
-        // print(response.body);
+
         dashboardData = DashBoardModel.fromJson(temp);
         return dashboardData;
 
@@ -33,11 +36,11 @@ class DashBoardController extends GetxController {
         // Get.offAll(() => LoginScreen(),
         //     transition: Transition.rightToLeft,
         //     duration: const Duration(milliseconds: 400));
+        return null;
       }
     } catch (e) {
       debugPrint(e.toString());
     }
-    update();
   }
 
   RxList<Category> categoryList = [
@@ -46,11 +49,11 @@ class DashBoardController extends GetxController {
     Category("Find a Course", Icons.menu_book_outlined, false),
     Category("My Account", Icons.account_box_outlined, false),
   ].obs;
-  @override
-  void onReady() {
-    dashBoardFetch();
-    super.onReady();
-  }
+  // @override
+  // void onReady() {
+  //   dashBoardFetch();
+  //   super.onReady();
+  // }
 
   Future<double> calculatePercentage(int index) async {
     try {
@@ -60,8 +63,6 @@ class DashBoardController extends GetxController {
         pecentage.value == 0;
       }
       pecentage.value = temp * 100;
-
-      print(dashboardData?.data.subjects[index].testsCount);
     } catch (e) {
       pecentage.value = 0.0;
     }

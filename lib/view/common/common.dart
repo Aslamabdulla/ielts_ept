@@ -13,3 +13,16 @@ final textStyleSubjectsTile =
 final kBorderRadius10 = BorderRadius.circular(10.r);
 final textLatestNewsText10 = TextStyle(
     fontSize: 10.sp, overflow: TextOverflow.clip, fontWeight: FontWeight.w400);
+final headTextNixmat = TextStyle(fontFamily: "Nixmat", fontSize: 20.sp);
+final centerTextSubjectScreen =
+    TextStyle(fontSize: 16.sp, color: kBlack, fontWeight: FontWeight.w600);
+final kSubjectTesttile = BoxDecoration(
+  boxShadow: [
+    BoxShadow(
+        color: Colors.grey.withOpacity(.5), //New
+        blurRadius: 8.0,
+        spreadRadius: 0)
+  ],
+  borderRadius: BorderRadius.circular(6),
+  color: kWhite,
+);

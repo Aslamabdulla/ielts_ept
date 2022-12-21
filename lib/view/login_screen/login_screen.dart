@@ -48,7 +48,7 @@ class _LoginScreenScreenState extends State<LoginScreen> {
                       child: Column(
                         children: [
                           Text(
-                            "Registration",
+                            "Login",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20.sp,
@@ -66,11 +66,11 @@ class _LoginScreenScreenState extends State<LoginScreen> {
 
                     kHeight35,
                     buttonWidget(
-                      "Register",
+                      "Login",
                       325,
                       () {
                         if (formKey.currentState!.validate()) {
-                          regCtrl.registerUser();
+                          regCtrl.loginUser();
                         }
                         // ApiCalls().postRequest("register");
                         // print(regCtrl.email);
