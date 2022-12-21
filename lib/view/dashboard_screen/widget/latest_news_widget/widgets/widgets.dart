@@ -20,7 +20,7 @@ Container latestNewsColumnTile(
     ),
     margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
     width: 350.w,
-    height: 120.h,
+    height: 130.h,
     child: Row(
       children: [
         kWidth10,
@@ -43,7 +43,7 @@ Container latestNewsColumnTile(
             kHeight5,
             SizedBox(
               width: 170.w,
-              height: 40.h,
+              height: 45.h,
               child: Text(
                 dashCtrl.dashboardData?.data.latestNews[index].title ?? "",
                 maxLines: 2,
@@ -75,7 +75,7 @@ Container latestNewsColumnTile(
                   style: textLatestNewsText10,
                 ),
                 SizedBox(
-                  width: 118.w,
+                  width: 95.w,
                 ),
                 Text(
                   formattedtime,

@@ -3,12 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/view/common/background_onboarding/background_onboarding.dart';
-import 'package:ielts/view/common/button_widget.dart';
+import 'package:ielts/view/common/button_widget/button_widget.dart';
 import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/course_selection_screen/widgets/choice.dart';
 import 'package:ielts/view/registration_screen/registration_screen.dart';
 
-import '../common/background_clipper.dart';
+import '../common/background_clipper/background_clipper.dart';
 import '../common/common.dart';
 
 class CourseSelectionScreen extends StatelessWidget {

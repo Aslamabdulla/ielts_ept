@@ -1,11 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'test_model/test_model.dart';
 
-class ListeningTile {
+class TestTile {
   bool locked;
   Test data;
-  ListeningTile(
+  String tries;
+  TestTile(
     this.locked,
     this.data,
+    this.tries,
   );
 }

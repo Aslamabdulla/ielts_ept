@@ -1,55 +1,15 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
-import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/listening_screen/listening_screen.dart';
+import 'package:ielts/view/subject_tests_screen/subject_test_screen.dart';
 import 'package:progress_indicator/progress_indicator.dart';
-import 'package:shimmer/shimmer.dart';
 
-class SubjectListViewTileWidget extends StatelessWidget {
-  const SubjectListViewTileWidget({
-    Key? key,
-    required this.width,
-  }) : super(key: key);
-
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 125.h,
-      width: width,
-      child: Obx(
-        () => FutureBuilder<DashBoardModel?>(
-            future: dashCtrl.dashBoardFetch(
-                data: dashCtrl.switcherIndex4.value == 1
-                    ? dashCtrl.academicData
-                    : dashCtrl.generalData),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return const Text("Error Occured");
-              } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return CupertinoActivityIndicator(
-                  radius: 20.r,
-                  color: kBlack,
-                );
-              } else if (snapshot.data == null) {
-                return Text("NO DATA THERE");
-              } else if (snapshot.data != null) {}
-              return ListViewSubjectsWidget();
-            }),
-      ),
-    );
-  }
-}
-
-class ListViewSubjectsWidget extends StatelessWidget {
-  const ListViewSubjectsWidget({
+class ListViewSubjectsWidgetBuilder extends StatelessWidget {
+  const ListViewSubjectsWidgetBuilder({
     Key? key,
   }) : super(key: key);
 
@@ -70,7 +30,17 @@ class ListViewSubjectsWidget extends StatelessWidget {
 
           return GestureDetector(
             onTap: () {
-              Get.to(() => SubjectScreen());
+              Get.to(
+                  () => SubjectScreen(
+                        name: dashCtrl.dashboardData?.data.subjects[index]
+                                .subject.name ??
+                            "",
+                        subjectId: dashCtrl.dashboardData?.data.subjects[index]
+                                .subjectId ??
+                            "",
+                      ),
+                  transition: Transition.fadeIn,
+                  duration: const Duration(milliseconds: 400));
             },
             child: SlideInRight(
               duration: const Duration(milliseconds: 400),

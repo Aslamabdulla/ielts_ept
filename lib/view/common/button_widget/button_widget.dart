@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 Widget buttonWidget(String string, double width, VoidCallback voidCallback) {
-  Size size = Get.size;
-
   return InkWell(
     highlightColor: Colors.transparent,
     splashColor: Colors.transparent,

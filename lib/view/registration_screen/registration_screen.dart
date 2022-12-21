@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:ielts/view/common/background_onboarding/background_onboarding.dart';
-import 'package:ielts/view/common/button_widget.dart';
+import 'package:ielts/view/common/button_widget/button_widget.dart';
 
 import 'package:ielts/view/registration_screen/widgets/text_form_fileds.dart';
 

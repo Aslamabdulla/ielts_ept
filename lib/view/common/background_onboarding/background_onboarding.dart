@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ielts/view/common/background_clipper.dart';
+import 'package:ielts/view/common/background_clipper/background_clipper.dart';
 import 'package:ielts/view/common/common.dart';
 
 class BackgroundClipperWidget extends StatelessWidget {

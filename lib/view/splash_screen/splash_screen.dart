@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/main.dart';
-import 'package:ielts/view/common/background_clipper.dart';
+import 'package:ielts/view/common/background_clipper/background_clipper.dart';
 import 'package:ielts/view/common/background_onboarding/background_onboarding.dart';
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/course_selection_screen/course_selection_screen.dart';

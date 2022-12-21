@@ -1,12 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
-import 'package:ielts/services/api.dart';
-import 'package:ielts/view/common/common.dart';
+
 import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/dashboard_screen/widget/latest_news_widget/widgets/widgets.dart';
 import 'package:intl/intl.dart';

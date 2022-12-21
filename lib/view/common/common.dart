@@ -26,3 +26,13 @@ final kSubjectTesttile = BoxDecoration(
   borderRadius: BorderRadius.circular(6),
   color: kWhite,
 );
+final kSubjectTesttileWithOpacity = BoxDecoration(
+  boxShadow: [
+    BoxShadow(
+        color: Colors.grey.withOpacity(.25), //New
+        blurRadius: 5.0,
+        spreadRadius: 0)
+  ],
+  borderRadius: BorderRadius.circular(6),
+  color: kWhite.withOpacity(.5),
+);

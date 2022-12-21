@@ -16,17 +16,17 @@ class ApiCalls {
     return response;
   }
 
-  postSubject({required subject_id}) async {
+  Future<http.Response> postTestSubject({required String subjectid}) async {
     if (dashCtrl.switcherIndex4.value == 0) {
       category = "IELTS";
     } else {
       category = "Academic";
     }
-    Map temp = {"category": category, "subject_id": subject_id};
-    var response = await http.post(Uri.parse(kBaseUrl + "subject/"),
+    Map temp = {"category": category, "subject_id": subjectid};
+    var response = await http.post(Uri.parse("${kBaseUrl}tests/"),
         body: temp, headers: {'Authorization': 'Bearer $token'});
 
-    print(response.body);
+    // print(response.body);
     return response;
   }
 }

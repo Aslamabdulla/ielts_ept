@@ -83,6 +83,6 @@ flutter:
           weight: 600
     - family: Nixmat
       fonts:
-        - asset: assets/fonts/Nixmat.ttf    
+        - asset: assets/fonts/Nixmat.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

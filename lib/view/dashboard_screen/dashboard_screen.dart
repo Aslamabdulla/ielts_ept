@@ -16,14 +16,14 @@ import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/common/scrol_behaviour/scroll_behaviour.dart';
 import 'package:ielts/view/common/text_sub_head_widget/text_sub_head.dart';
 import 'package:ielts/view/dashboard_screen/bg_cirle_clipper.dart/bg_circle_clipper.dart';
-import 'package:ielts/view/dashboard_screen/widget/app_bar_widgets.dart';
+import 'package:ielts/view/dashboard_screen/widget/app_bar_widget/app_bar_widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:progress_indicator/progress_indicator.dart';
 
 import 'widget/latest_news_widget/latest_news_widget.dart';
-import 'widget/lessons_list_view_tile.dart';
-import 'widget/subjects_list_view_tile_widget.dart';
-import 'widget/username_top_widget.dart';
+import 'widget/lessons/lessons_list_view_tile.dart';
+import 'widget/subjects_list_view/subjects_list_view_tile_widget.dart';
+import 'widget/username_dashboard_top/username_top_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
