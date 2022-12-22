@@ -1,17 +1,7 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:ielts/dependency/dependency.dart';
-import 'package:ielts/services/api.dart';
-import 'package:ielts/view/common/animated_container/animated_toggle_switch.dart';
-import 'package:ielts/view/common/bottom_nav_bar/bottom_nav.dart';
-import 'package:ielts/view/common/common.dart';
+
 import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/common/scrol_behaviour/scroll_behaviour.dart';
 import 'package:ielts/view/common/text_sub_head_widget/text_sub_head.dart';

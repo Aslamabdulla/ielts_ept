@@ -26,10 +26,7 @@ Widget appBar() => AppBar(
       actions: [
         IconButton(
             onPressed: () {
-              testCtrl.fetchTests(subjectId: "1");
-              // ApiCalls().postTestSubject(subjectid: "1");
-              testCtrl.sort();
-              testCtrl.printTile();
+              ApiCalls().postTestUpdates(subjectid: "1");
             },
             icon: Icon(
               Icons.chevron_left,

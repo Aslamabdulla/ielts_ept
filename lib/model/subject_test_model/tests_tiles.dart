@@ -5,9 +5,11 @@ class TestTile {
   bool locked;
   Test data;
   String tries;
+  bool timerOff;
   TestTile(
     this.locked,
     this.data,
     this.tries,
+    this.timerOff,
   );
 }

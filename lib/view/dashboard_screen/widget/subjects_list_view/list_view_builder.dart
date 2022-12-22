@@ -1,12 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:ielts/dependency/dependency.dart';
-import 'package:ielts/view/common/common.dart';
+
 import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/subject_tests_screen/subject_test_screen.dart';
-import 'package:progress_indicator/progress_indicator.dart';
+
+import 'widgets/subject_list_tile_widget.dart';
 
 class ListViewSubjectsWidgetBuilder extends StatelessWidget {
   const ListViewSubjectsWidgetBuilder({
@@ -24,23 +27,31 @@ class ListViewSubjectsWidgetBuilder extends StatelessWidget {
           num percentage =
               dashCtrl.dashboardData?.data.subjects[index].userTestsCount ??
                   0.0 / testCount!;
+
           if (percentage.isNaN || percentage.isInfinite) {
             percentage = 0.0;
           }
 
           return GestureDetector(
             onTap: () {
+              dashCtrl.isLoading.value = true;
+              dashCtrl.fetchTests(
+                  subjectId:
+                      dashCtrl.dashboardData?.data.subjects[index].subjectId ??
+                          "1");
               Get.to(
-                  () => SubjectScreen(
-                        name: dashCtrl.dashboardData?.data.subjects[index]
-                                .subject.name ??
-                            "",
-                        subjectId: dashCtrl.dashboardData?.data.subjects[index]
-                                .subjectId ??
-                            "",
-                      ),
-                  transition: Transition.fadeIn,
-                  duration: const Duration(milliseconds: 400));
+                () => SubjectScreen(
+                  color: subjectsTileColor[index],
+                  name: dashCtrl
+                          .dashboardData?.data.subjects[index].subject.name ??
+                      "",
+                  subjectId:
+                      dashCtrl.dashboardData?.data.subjects[index].subjectId ??
+                          "",
+                ),
+                transition: Transition.fadeIn,
+                duration: const Duration(milliseconds: 400),
+              );
             },
             child: SlideInRight(
               duration: const Duration(milliseconds: 400),
@@ -55,65 +66,8 @@ class ListViewSubjectsWidgetBuilder extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 height: 50.h,
                 width: 170.w,
-                child: Column(
-                  // mainAxisAlignment:
-                  // MainAxisAlignment.spaceBetween,
-                  children: [
-                    kHeight10,
-                    Row(
-                      children: [
-                        kWidth10,
-                        FittedBox(
-                          child: Text(
-                            dashCtrl.dashboardData?.data.subjects[index].subject
-                                    .name ??
-                                "",
-                            maxLines: 1,
-                            style: textStyleSubjectsTile,
-                          ),
-                        ),
-                        const Spacer(),
-                        FittedBox(
-                          child: Text(
-                            "${dashCtrl.dashboardData?.data.subjects[index].userTestsCount ?? 0}/${dashCtrl.dashboardData?.data.subjects[index].testsCount ?? 0}",
-                            maxLines: 1,
-                            style: textStyleSubjectsTile,
-                          ),
-                        ),
-                        kWidth10,
-                      ],
-                    ),
-                    const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        FittedBox(
-                          child: Text(
-                            "${percentage.toInt().toString()}%",
-                            maxLines: 1,
-                            style: textStyleSubjectsTile,
-                          ),
-                        ),
-                        kHeight5,
-                        SizedBox(
-                          height: 10.h,
-                          width: 140.w,
-                          child: BarProgress(
-                            percentage: percentage.toDouble(),
-                            backColor: kWhite,
-                            color: subjectsTileProgressColor[index],
-                            showPercentage: true,
-                            textStyle: const TextStyle(fontSize: 0),
-                            stroke: 8,
-                            round: true,
-                          ),
-                        ),
-                      ],
-                    ),
-                    kHeight10
-                  ],
-                ),
+                child: SubjectsListViewTileDashboardWidget(
+                    percentage: percentage, index: index),
               ),
             ),
           );

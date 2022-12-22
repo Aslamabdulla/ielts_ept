@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
 
 class UserNameTopWidget extends StatelessWidget {
@@ -21,8 +22,11 @@ class UserNameTopWidget extends StatelessWidget {
               "Welcome,",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16.sp),
             ),
-            Text(dashCtrl.dashboardData?.data.user.name ?? "USER",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp)),
+            Obx(
+              () => Text(dashCtrl.userName.value!,
+                  style:
+                      TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp)),
+            ),
           ],
         ),
       ),
