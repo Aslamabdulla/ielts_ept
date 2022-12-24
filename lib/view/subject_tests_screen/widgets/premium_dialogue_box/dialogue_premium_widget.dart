@@ -16,10 +16,9 @@ class DialogueBoxPremiumWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          const EdgeInsets.only(left: 20, right: 12, top: 10, bottom: 16).r,
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 5, bottom: 5).r,
       decoration: kboxDecorationDialogue(color),
-      height: 320.h,
+      height: 330.h,
       width: 280.w,
       child: Center(
         child: Column(
@@ -37,29 +36,30 @@ class DialogueBoxPremiumWidget extends StatelessWidget {
               style: kDialogueWhiteSubText,
               maxLines: 3,
             ),
-            kHeight5,
+            // kHeight5,
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Rs 2000/ Month",
                   style: centerTextSubjectDialogue,
                 )),
-            kHeight25,
+            kHeight20,
             Stack(
               alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
                 Container(
                     height: 150.h,
-                    width: 234.w,
+                    width: 250.w,
                     decoration: BoxDecoration(
                         color: kWhite,
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Padding(
                       padding:
-                          const EdgeInsets.only(top: 25.0, left: 15, right: 15)
+                          const EdgeInsets.only(top: 10.0, left: 15, right: 15)
                               .r,
                       child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(
                               iconDialogueText.length,
                               (index) => DialogueSubRowWidget(
@@ -73,7 +73,7 @@ class DialogueBoxPremiumWidget extends StatelessWidget {
                     elevation: 5,
                     child: Container(
                       height: 32.h,
-                      width: 234.w,
+                      width: 250.w,
                       decoration: BoxDecoration(
                           color: kWhite,
                           borderRadius: BorderRadius.circular(37.84.r)),
@@ -83,7 +83,7 @@ class DialogueBoxPremiumWidget extends StatelessWidget {
                           style: TextStyle(
                               color: color,
                               fontWeight: FontWeight.w800,
-                              fontSize: 16.sp),
+                              fontSize: 15.sp),
                         ),
                       ),
                     ),

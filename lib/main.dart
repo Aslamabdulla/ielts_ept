@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:ielts/view/common/animated_container/animated_toggle_switch.dart';
-import 'package:ielts/view/dashboard_screen/dashboard_screen.dart';
-import 'package:ielts/view/navigation_router/navigation_route.dart';
+
 import 'package:ielts/view/splash_screen/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,7 +11,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
   await ScreenUtil.ensureScreenSize();
-  runApp(const MyApp());
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {

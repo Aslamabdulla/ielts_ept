@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:ielts/view/common/common_widgets/text_sub_head_widget/text_sub_head.dart';
 
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/common/scrol_behaviour/scroll_behaviour.dart';
-import 'package:ielts/view/common/text_sub_head_widget/text_sub_head.dart';
+import 'package:ielts/view/common/common_widgets/scrol_behaviour/scroll_behaviour.dart';
+
 import 'package:ielts/view/dashboard_screen/bg_cirle_clipper.dart/bg_circle_clipper.dart';
 import 'package:ielts/view/dashboard_screen/widget/app_bar_widget/app_bar_widgets.dart';
 import 'package:intl/intl.dart';
@@ -29,6 +30,7 @@ class HomeScreen extends StatelessWidget {
         behavior: NoShadoBehavior(),
         child: SingleChildScrollView(
           child: Stack(
+            clipBehavior: Clip.none,
             children: [
               BgCircleFirstClipper(width: width),
               BGCircleSecondClipper(width: width),

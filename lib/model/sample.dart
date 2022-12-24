@@ -1,74 +1,79 @@
-// To parse this JSON data, do
-//
-//     final modelClass = modelClassFromJson(jsonString);
-
 import 'dart:convert';
 
-ModelClass modelClassFromJson(String str) =>
-    ModelClass.fromJson(json.decode(str));
+SampleModel sampleModelFromJson(String str) =>
+    SampleModel.fromJson(json.decode(str));
 
-String modelClassToJson(ModelClass data) => json.encode(data.toJson());
+String sampleModelToJson(SampleModel data) => json.encode(data.toJson());
 
-class ModelClass {
-  ModelClass({
-    required this.data,
+class SampleModel {
+  SampleModel({
+    this.subjectId,
+    this.testId,
+    this.exerciseId,
+    this.category,
+    required this.question,
   });
 
-  Data data;
+  String? subjectId;
+  String? testId;
+  String? exerciseId;
+  String? category;
+  List<Question> question;
 
-  factory ModelClass.fromJson(Map<String, dynamic> json) => ModelClass(
-        data: Data.fromJson(json["data"]),
+  factory SampleModel.fromJson(Map<String, dynamic> json) => SampleModel(
+        subjectId: json["subject_id"],
+        testId: json["test_id"],
+        exerciseId: json["exercise_id"],
+        category: json["category"],
+        question: List<Question>.from(
+            json["question"].map((x) => Question.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data.toJson(),
+        "subject_id": subjectId,
+        "test_id": testId,
+        "exercise_id": exerciseId,
+        "category": category,
+        "question": List<dynamic>.from(question.map((x) => x.toJson())),
       };
 }
 
-class Data {
-  Data({
-    required this.tests,
+class Question {
+  Question({
+    this.questionId,
+    this.answer,
+    this.audioAnswerFile,
+    this.audioRightAnswer,
+    this.points,
+    this.scoredPoints,
+    this.status,
   });
 
-  List<Test> tests;
+  int? questionId;
+  String? answer;
+  dynamic? audioAnswerFile;
+  dynamic? audioRightAnswer;
+  int? points;
+  int? scoredPoints;
+  String? status;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        tests: List<Test>.from(json["tests"].map((x) => Test.fromJson(x))),
+  factory Question.fromJson(Map<String, dynamic> json) => Question(
+        questionId: json["question_id"],
+        answer: json["answer"],
+        audioAnswerFile: json["audio_answer_file"],
+        audioRightAnswer: json["audio_right_answer"],
+        points: json["points"],
+        scoredPoints: json["scored_points"],
+        status: json["status"],
       );
 
   Map<String, dynamic> toJson() => {
-        "tests": List<dynamic>.from(tests.map((x) => x.toJson())),
-      };
-}
-
-class Test {
-  Test({
-    required this.id,
-    required this.name,
-    required this.duration,
-    required this.exercisesCount,
-    required this.userTest,
-  });
-
-  int id;
-  String name;
-  String duration;
-  String exercisesCount;
-  dynamic userTest;
-
-  factory Test.fromJson(Map<String, dynamic> json) => Test(
-        id: json["id"],
-        name: json["name"],
-        duration: json["duration"],
-        exercisesCount: json["exercises_count"],
-        userTest: json["user_test"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "duration": duration,
-        "exercises_count": exercisesCount,
-        "user_test": userTest,
+        "question_id": questionId,
+        "answer": answer,
+        "audio_answer_file": audioAnswerFile,
+        "audio_right_answer": audioRightAnswer,
+        "points": points,
+        "scored_points": scoredPoints,
+        "status": status,
       };
 }

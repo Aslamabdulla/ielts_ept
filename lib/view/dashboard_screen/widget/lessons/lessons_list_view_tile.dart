@@ -16,9 +16,9 @@ class LessonsListViewTileWidget extends StatelessWidget {
     return Container(
       height: 145.5.h,
       width: width,
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: EdgeInsets.symmetric(vertical: 5.h),
       child: ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: 3,
         itemBuilder: (context, index) {
@@ -40,13 +40,14 @@ class LessonsListViewTileWidget extends StatelessWidget {
                     .r,
             padding: const EdgeInsets.only(left: 10).r,
             height: 100.h,
-            width: 149.w,
+            width: 150.w,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(lessonsImages[index]),
-                FittedBox(
+                Padding(
+                  padding: const EdgeInsets.only(right: 5.0).r,
                   child: Text(
                     lessonsTileName[index],
                     maxLines: 1,

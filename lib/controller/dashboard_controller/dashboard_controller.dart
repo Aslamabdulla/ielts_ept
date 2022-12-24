@@ -2,12 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/main.dart';
 import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 import 'package:ielts/model/subject_test_model/test_model/test_model.dart';
 import 'package:ielts/model/subject_test_model/tests_tiles.dart';
 import 'package:ielts/services/api.dart';
 import 'package:ielts/model/category_bottom_nav/category.dart';
+import 'package:ielts/view/common/constants.dart';
+import 'package:ielts/view/subject_tests_screen/widgets/premium_dialogue_box/dialogue_premium_widget.dart';
 
 class DashBoardController extends GetxController {
   RxInt switcherIndex4 = 0.obs;
@@ -20,7 +23,8 @@ class DashBoardController extends GetxController {
   Rx<String?> userName = "USER".obs;
   Map generalData = {"category": "IELTS", "type": "General"};
   Map academicData = {"category": "IELTS", "type": "Academic"};
-  DashBoardModel? dashboardData;
+  // DashBoardModel? dashboardData;
+  final dashboardData = Rxn<DashBoardModel>();
   Future<DashBoardModel?> dashBoardFetch({Map? data}) async {
     try {
       data ??= generalData;
@@ -32,8 +36,8 @@ class DashBoardController extends GetxController {
 
         var temp = await jsonDecode(response.body);
         userName.value = prefs.getString("name");
-        dashboardData = DashBoardModel.fromJson(temp);
-        return dashboardData;
+        dashboardData.value = DashBoardModel.fromJson(temp);
+        return dashboardData.value;
       } else {
         return null;
       }
@@ -52,8 +56,9 @@ class DashBoardController extends GetxController {
 
   Future<double> calculatePercentage(int index) async {
     try {
-      double temp = dashboardData?.data.subjects[index].userTestsCount /
-          dashboardData?.data.subjects[index].testsCount;
+      double temp = dashboardData.value?.data.subjects[index].userTestsCount /
+          dashboardData.value
+        ?..subjects[index].testsCount;
       if (temp == null) {
         pecentage.value == 0;
       }
@@ -70,6 +75,7 @@ class DashBoardController extends GetxController {
 
   sort() {
     testTiles.clear();
+
     String temp = "4";
     if (tests?.data == null) {
       return;
@@ -82,7 +88,7 @@ class DashBoardController extends GetxController {
           element.userTest = count.toString();
         }
 
-        testTiles.add(TestTile(true, element, element.userTest, true));
+        testTiles.add(TestTile(false, element, element.userTest, true));
       });
     }
   }
@@ -101,5 +107,29 @@ class DashBoardController extends GetxController {
       return null;
     }
     update();
+  }
+
+  showpPremiumDialogue() {
+    Get.defaultDialog(
+        title: "",
+        backgroundColor: Colors.transparent,
+        content: Column(
+          children: [
+            const DialogueBoxPremiumWidget(
+                color: KDialogueboxColor1, package: "Full Package"),
+            kHeight15,
+            const DialogueBoxPremiumWidget(
+                color: KDialogueboxColor2, package: "Custom"),
+          ],
+        ));
+  }
+
+  @override
+  void onClose() {
+    regCtrl.dispose();
+    timerCtrl.dispose();
+    exerciseCtrl.dispose();
+    dashCtrl.dispose();
+    super.onClose();
   }
 }

@@ -23,10 +23,10 @@ class ListViewSubjectsWidgetBuilder extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           int? testCount =
-              dashCtrl.dashboardData?.data.subjects[index].testsCount;
-          num percentage =
-              dashCtrl.dashboardData?.data.subjects[index].userTestsCount ??
-                  0.0 / testCount!;
+              dashCtrl.dashboardData.value?.data.subjects[index].testsCount;
+          num percentage = dashCtrl
+                  .dashboardData.value?.data.subjects[index].userTestsCount ??
+              0.0 / testCount!;
 
           if (percentage.isNaN || percentage.isInfinite) {
             percentage = 0.0;
@@ -36,18 +36,18 @@ class ListViewSubjectsWidgetBuilder extends StatelessWidget {
             onTap: () {
               dashCtrl.isLoading.value = true;
               dashCtrl.fetchTests(
-                  subjectId:
-                      dashCtrl.dashboardData?.data.subjects[index].subjectId ??
-                          "1");
+                  subjectId: dashCtrl.dashboardData.value?.data.subjects[index]
+                          .subjectId ??
+                      "1");
               Get.to(
                 () => SubjectScreen(
                   color: subjectsTileColor[index],
-                  name: dashCtrl
-                          .dashboardData?.data.subjects[index].subject.name ??
+                  name: dashCtrl.dashboardData.value?.data.subjects[index]
+                          .subject.name ??
                       "",
-                  subjectId:
-                      dashCtrl.dashboardData?.data.subjects[index].subjectId ??
-                          "",
+                  subjectId: dashCtrl.dashboardData.value?.data.subjects[index]
+                          .subjectId ??
+                      "",
                 ),
                 transition: Transition.fadeIn,
                 duration: const Duration(milliseconds: 400),
@@ -72,6 +72,6 @@ class ListViewSubjectsWidgetBuilder extends StatelessWidget {
             ),
           );
         },
-        itemCount: dashCtrl.dashboardData?.data.subjects.length ?? 0);
+        itemCount: dashCtrl.dashboardData.value?.data.subjects.length ?? 0);
   }
 }

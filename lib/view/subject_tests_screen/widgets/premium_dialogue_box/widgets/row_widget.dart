@@ -21,16 +21,16 @@ class DialogueSubRowWidget extends StatelessWidget {
         children: [
           Icon(
             leading,
-            size: 20.sp,
+            size: 18.sp,
           ),
           Text(
             text,
-            style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w500),
           ),
           Icon(
             Icons.check_circle,
             color: kGreen,
-            size: 20.sp,
+            size: 18.sp,
           ),
         ],
       ),

@@ -1,15 +1,11 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/model/dashboard_model/dash_board_model.dart';
-import 'package:ielts/view/common/common.dart';
+
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/subject_tests_screen/subject_test_screen.dart';
-import 'package:progress_indicator/progress_indicator.dart';
-import 'package:shimmer/shimmer.dart';
 
 import 'list_view_builder.dart';
 

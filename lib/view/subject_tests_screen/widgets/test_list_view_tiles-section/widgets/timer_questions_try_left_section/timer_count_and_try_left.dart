@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ielts/controller/dashboard_controller/dashboard_controller.dart';
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';
@@ -65,7 +66,14 @@ class TimerAndTryLeftWidget extends StatelessWidget {
           const Spacer(
             flex: 3,
           ),
-          Text("$tryLeftCount Try left", style: kTextStyleTest),
+          GetBuilder<DashBoardController>(
+              init: DashBoardController(),
+              id: "trycount",
+              builder: (dashCtrol) {
+                return Text(
+                    "${dashCtrol.testTiles.value[index]?.data.userTest} Try left",
+                    style: kTextStyleTest);
+              }),
         ],
       ),
     );

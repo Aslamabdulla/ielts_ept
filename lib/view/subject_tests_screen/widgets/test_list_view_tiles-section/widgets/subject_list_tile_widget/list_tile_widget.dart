@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/subject_tests_screen/widgets/test_list_view_tiles/widgets/timer_count_and_try_left.dart';
+import 'package:ielts/view/subject_tests_screen/widgets/test_list_view_tiles-section/widgets/timer_questions_try_left_section/timer_count_and_try_left.dart';
 
 class SubjectTestListTileWidget extends StatelessWidget {
   const SubjectTestListTileWidget({
@@ -31,7 +31,7 @@ class SubjectTestListTileWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 25, right: 25, bottom: 20).r,
       decoration: kSubjectTesttile,
-      height: 88.h,
+      height: 95.h,
       width: 333.w,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

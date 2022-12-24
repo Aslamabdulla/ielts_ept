@@ -24,7 +24,9 @@ class SubjectsListViewTileDashboardWidget extends StatelessWidget {
             kWidth10,
             FittedBox(
               child: Text(
-                dashCtrl.dashboardData?.data.subjects[index].subject.name ?? "",
+                dashCtrl.dashboardData.value?.data.subjects[index].subject
+                        .name ??
+                    "",
                 maxLines: 1,
                 style: textStyleSubjectsTile,
               ),
@@ -32,7 +34,7 @@ class SubjectsListViewTileDashboardWidget extends StatelessWidget {
             const Spacer(),
             FittedBox(
               child: Text(
-                "${dashCtrl.dashboardData?.data.subjects[index].userTestsCount ?? 0}/${dashCtrl.dashboardData?.data.subjects[index].testsCount ?? 0}",
+                "${dashCtrl.dashboardData.value?.data.subjects[index].userTestsCount ?? 0}/${dashCtrl.dashboardData.value?.data.subjects[index].testsCount ?? 0}",
                 maxLines: 1,
                 style: textStyleSubjectsTile,
               ),

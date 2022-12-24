@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/common/scrol_behaviour/scroll_behaviour.dart';
+
 import 'package:ielts/view/dashboard_screen/bg_cirle_clipper.dart/bg_circle_clipper.dart';
 import 'package:ielts/view/subject_tests_screen/widgets/app_bar/app_bar.dart';
 
-import 'widgets/test_list_view_tiles/tests_list_view_builder.dart';
+import 'widgets/test_list_view_tiles-section/widgets/test_list_tile_builder_listview/tests_list_view_builder.dart';
 
 class SubjectScreen extends StatelessWidget {
   final String subjectId;
@@ -35,6 +34,7 @@ class SubjectScreen extends StatelessWidget {
             BGCircleSecondClipper(width: screenWidth),
             SafeArea(
                 child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 appBar(),
                 kHeight40,

@@ -22,68 +22,78 @@ Container latestNewsColumnTile(
     width: 350.w,
     height: 130.h,
     child: Row(
+      mainAxisSize: MainAxisSize.max,
       children: [
         kWidth10,
-        Container(
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(borderRadius: kBorderRadius10),
-          child: Image.network(
-            ApiCalls().imageUrl +
-                (dashCtrl.dashboardData?.data.latestNews[index].image ?? ""),
-            fit: BoxFit.cover,
-            height: 100.h,
-            width: 96.w,
+        Flexible(
+          flex: 1,
+          child: Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(borderRadius: kBorderRadius10),
+            child: Image.network(
+              ApiCalls().imageUrl +
+                  (dashCtrl.dashboardData.value?.data.latestNews[index].image ??
+                      ""),
+              fit: BoxFit.cover,
+              height: 100.h,
+              width: 96.w,
+            ),
           ),
         ),
         kWidth10,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            kHeight5,
-            SizedBox(
-              width: 170.w,
-              height: 45.h,
-              child: Text(
-                dashCtrl.dashboardData?.data.latestNews[index].title ?? "",
+        Flexible(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              kHeight10,
+              Text(
+                dashCtrl.dashboardData.value?.data.latestNews[index].title ??
+                    "",
                 maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
               ),
-            ),
-            SizedBox(
-              // height: 60.h,
-              width: 224.w,
-              child: Text(
-                dashCtrl.dashboardData?.data.latestNews[index].description ??
-                    "",
-                maxLines: 3,
-                // overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 8.sp,
+              SizedBox(
+                // height: 60.h,
+                width: 224.w,
+                child: Text(
+                  dashCtrl.dashboardData.value?.data.latestNews[index]
+                          .description ??
+                      "",
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontSize: 8.sp,
 
-                    // overflow: TextOverflow.clip,
-                    fontWeight: FontWeight.w400),
+                      // overflow: TextOverflow.clip,
+                      fontWeight: FontWeight.w400),
+                ),
               ),
-            ),
-            kHeight5,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  formattedDate.toString(),
-                  style: textLatestNewsText10,
+              kHeight5,
+              SizedBox(
+                width: 215.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      formattedDate.toString(),
+                      style: textLatestNewsText10,
+                    ),
+                    // SizedBox(
+                    //   width: screenWidth / 3.5,
+                    // ),
+                    Text(
+                      formattedtime,
+                      style: textLatestNewsText10,
+                    )
+                  ],
                 ),
-                SizedBox(
-                  width: 95.w,
-                ),
-                Text(
-                  formattedtime,
-                  style: textLatestNewsText10,
-                )
-              ],
-            )
-          ],
+              )
+            ],
+          ),
         )
       ],
     ),

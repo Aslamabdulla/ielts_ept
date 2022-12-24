@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ielts/view/common/background_clipper/background_clipper.dart';
+import 'package:get/get.dart';
+import 'package:ielts/view/common/common_widgets/background_clipper/background_clipper.dart';
 import 'package:ielts/view/common/common.dart';
 
 class BackgroundClipperWidget extends StatelessWidget {
@@ -10,13 +11,17 @@ class BackgroundClipperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: screenHeight,
-      // width: screenWidth,
       decoration: boxDecorSplash("assets/images/splash_bg_2.png"),
       child: ClipPath(
         clipper: BackgroundClipper(),
         child: Container(
           decoration: boxDecorSplash("assets/images/spash_bg.png"),
+          child: Center(
+            child: Container(
+              height: screenHeight,
+              width: screenWidth,
+            ),
+          ),
         ),
       ),
     );

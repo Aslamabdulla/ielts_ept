@@ -39,12 +39,12 @@ class SliderWidget extends StatelessWidget {
         ],
         indents: 5,
         containerHeight: 40.h,
-        containerWight: 150.w,
+        containerWight: 160.w,
         children: [
           Container(
             alignment: Alignment.center,
             height: 30.h,
-            width: 65.w,
+            width: 70.w,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: dashCtrl.switcherIndex4.value == 0
@@ -54,7 +54,7 @@ class SliderWidget extends StatelessWidget {
               child: Text(
                 'General',
                 style: TextStyle(
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                     fontWeight: FontWeight.w600,
                     color: dashCtrl.switcherIndex4.value == 0
                         ? kBlack.withOpacity(0.9)
@@ -76,7 +76,7 @@ class SliderWidget extends StatelessWidget {
                 'Academic',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 11.sp,
+                    fontSize: 10.sp,
                     color: dashCtrl.switcherIndex4.value == 1
                         ? kBlack.withOpacity(0.9)
                         : Colors.white),

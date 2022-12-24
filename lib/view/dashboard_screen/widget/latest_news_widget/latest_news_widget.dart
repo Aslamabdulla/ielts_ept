@@ -33,12 +33,13 @@ class LatestNewsWidget extends StatelessWidget {
             }
             return ListView.builder(
               shrinkWrap: true,
-              itemCount: dashCtrl.dashboardData?.data.latestNews.length ?? 0,
+              itemCount:
+                  dashCtrl.dashboardData.value?.data.latestNews.length ?? 0,
               physics: const NeverScrollableScrollPhysics(),
               primary: false,
               itemBuilder: (context, index) {
-                var date =
-                    dashCtrl.dashboardData?.data.latestNews[index].updatedAt;
+                var date = dashCtrl
+                    .dashboardData.value?.data.latestNews[index].updatedAt;
                 String formattedDate =
                     DateFormat('MMM d,y').format(date ?? DateTime.parse(" "));
                 String formattedtime =
