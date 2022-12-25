@@ -24,9 +24,10 @@ class ListViewSubjectsWidgetBuilder extends StatelessWidget {
         itemBuilder: (context, index) {
           int? testCount =
               dashCtrl.dashboardData.value?.data.subjects[index].testsCount;
-          num percentage = dashCtrl
-                  .dashboardData.value?.data.subjects[index].userTestsCount ??
-              0.0 / testCount!;
+          num percentage = num.parse(dashCtrl.dashboardData.value?.data
+                      .subjects[index].userTestsCount ??
+                  "0") /
+              testCount!;
 
           if (percentage.isNaN || percentage.isInfinite) {
             percentage = 0.0;
@@ -67,7 +68,7 @@ class ListViewSubjectsWidgetBuilder extends StatelessWidget {
                 height: 50.h,
                 width: 170.w,
                 child: SubjectsListViewTileDashboardWidget(
-                    percentage: percentage, index: index),
+                    percentage: percentage * 100, index: index),
               ),
             ),
           );
