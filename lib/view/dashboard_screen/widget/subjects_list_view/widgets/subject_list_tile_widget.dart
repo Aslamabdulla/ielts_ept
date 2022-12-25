@@ -49,7 +49,7 @@ class SubjectsListViewTileDashboardWidget extends StatelessWidget {
           children: [
             FittedBox(
               child: Text(
-                "${percentage.toInt().toString()}%",
+                "${percentage.toStringAsFixed(1)}%",
                 maxLines: 1,
                 style: textStyleSubjectsTile,
               ),

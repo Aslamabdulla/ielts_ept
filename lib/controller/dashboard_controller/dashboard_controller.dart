@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:ielts/main.dart';
 import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 import 'package:ielts/model/subject_test_model/test_model/test_model.dart';
 import 'package:ielts/model/subject_test_model/tests_tiles.dart';
+
 import 'package:ielts/services/api.dart';
 import 'package:ielts/model/category_bottom_nav/category.dart';
 import 'package:ielts/view/common/constants.dart';
@@ -20,6 +22,7 @@ class DashBoardController extends GetxController {
   RxInt prevBottomIndex = 0.obs;
   RxBool isLoading = false.obs;
   var pecentage = 0.0.obs;
+  RxBool deactivated = true.obs;
   Rx<String?> userName = "USER".obs;
   Map generalData = {"category": "IELTS", "type": "General"};
   Map academicData = {"category": "IELTS", "type": "Academic"};
@@ -30,7 +33,7 @@ class DashBoardController extends GetxController {
       data ??= generalData;
 
       final response = await ApiCalls().postRequest(data, "dashboard/");
-
+      print(token);
       if (response.statusCode == 200 || response.statusCode == 201) {
         token = prefs.getString("token").obs;
 
@@ -56,9 +59,11 @@ class DashBoardController extends GetxController {
 
   Future<double> calculatePercentage(int index) async {
     try {
-      double temp = dashboardData.value?.data.subjects[index].userTestsCount /
-          dashboardData.value
-        ?..subjects[index].testsCount;
+      double temp = double.parse(
+              dashboardData.value?.data.subjects[index].userTestsCount ?? "0") /
+          double.parse(
+              dashboardData.value?.data.subjects[index].testsCount.toString() ??
+                  "1");
       if (temp == null) {
         pecentage.value == 0;
       }
@@ -80,15 +85,21 @@ class DashBoardController extends GetxController {
     if (tests?.data == null) {
       return;
     } else {
-      tests?.data.tests.forEach((element) {
+      tests?.data?.tests?.forEach((element) {
         if (element.userTest == null) {
-          element.userTest = temp;
-        } else {
-          int count = 4 - int.parse(element.userTest);
-          element.userTest = count.toString();
+          testTiles.add(TestTile(deactivated.value, element, "4", true));
+        } else if (int.parse(element.userTest?.exercisesCount ?? "4") >= 4) {
+          testTiles.add(TestTile(deactivated.value, element, "0", true));
+        } else if (int.parse(element.userTest?.exercisesCount ?? "4") >= 0) {
+          int count = 4 - int.parse(element.userTest?.exercisesCount ?? "4");
+          testTiles.add(
+              TestTile(deactivated.value, element, count.toString(), true));
         }
-
-        testTiles.add(TestTile(false, element, element.userTest, true));
+        for (var element in testTiles) {
+          log(element?.tries?.toString() ?? "null");
+        }
+        // testTiles.add(
+        //     TestTile(false, element, element.userTest?.exercisesCount, true));
       });
     }
   }
@@ -96,8 +107,10 @@ class DashBoardController extends GetxController {
   Future<TestsModel?> fetchTests({required String subjectId}) async {
     try {
       final response = await ApiCalls().postTestSubject(subjectid: subjectId);
+      print(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {
-        tests = testsModelFromJson(response.body);
+        tests = testModelFromJson(response.body);
+        print(tests?.data?.tests);
 
         sort();
         isLoading.value = false;

@@ -36,9 +36,19 @@ AppBar widgetAppBarExercise() {
           // exerciseCtrl.saveResult();
           timerCtrl.timerCancel();
           Get.back();
-          dashCtrl.refreshGroup("trycount");
+          dashCtrl.fetchTests(subjectId: timerCtrl.currentSubject.value);
           timerCtrl.timerOnNow.value = false;
-          exerciseCtrl.currentExerciseIndex.value = 0;
+          audioContrl.audioPlayer.pause();
+          int tries = int.parse(
+              dashCtrl.testTiles[timerCtrl.currentindex.value]?.tries ?? "4");
+          tries--;
+          exerciseCtrl.saveResult();
+          dashCtrl.testTiles[timerCtrl.currentindex.value]?.tries =
+              tries.toString();
+
+          dashCtrl.refreshGroup("trycount");
+
+          // exerciseCtrl.currentExerciseIndex.value = 0;
         },
         child: Text(
           "Quit Exam",

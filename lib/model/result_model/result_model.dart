@@ -1,32 +1,36 @@
+// To parse this JSON data, do
+//
+//     final resultModel = resultModelFromJson(jsonString);
+
 import 'dart:convert';
 
-SampleModel sampleModelFromJson(String str) =>
-    SampleModel.fromJson(json.decode(str));
+ResultModel resultModelFromJson(String str) =>
+    ResultModel.fromJson(json.decode(str));
 
-String sampleModelToJson(SampleModel data) => json.encode(data.toJson());
+String resultModelToJson(ResultModel data) => json.encode(data.toJson());
 
-class SampleModel {
-  SampleModel({
+class ResultModel {
+  ResultModel({
     this.subjectId,
     this.testId,
     this.exerciseId,
     this.category,
-    required this.question,
+    required this.questions,
   });
 
   String? subjectId;
   String? testId;
   String? exerciseId;
   String? category;
-  List<Question> question;
+  List<Questions?> questions;
 
-  factory SampleModel.fromJson(Map<String, dynamic> json) => SampleModel(
+  factory ResultModel.fromJson(Map<String, dynamic> json) => ResultModel(
         subjectId: json["subject_id"],
         testId: json["test_id"],
         exerciseId: json["exercise_id"],
         category: json["category"],
-        question: List<Question>.from(
-            json["question"].map((x) => Question.fromJson(x))),
+        questions: List<Questions>.from(
+            json["questions"].map((x) => Questions.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,12 +38,12 @@ class SampleModel {
         "test_id": testId,
         "exercise_id": exerciseId,
         "category": category,
-        "question": List<dynamic>.from(question.map((x) => x.toJson())),
+        "questions": List<dynamic>.from(questions.map((x) => x?.toJson())),
       };
 }
 
-class Question {
-  Question({
+class Questions {
+  Questions({
     this.questionId,
     this.answer,
     this.audioAnswerFile,
@@ -47,17 +51,19 @@ class Question {
     this.points,
     this.scoredPoints,
     this.status,
+    this.rightAnswer,
   });
 
   int? questionId;
   String? answer;
-  dynamic? audioAnswerFile;
-  dynamic? audioRightAnswer;
+  dynamic audioAnswerFile;
+  dynamic audioRightAnswer;
   int? points;
   int? scoredPoints;
   String? status;
+  String? rightAnswer;
 
-  factory Question.fromJson(Map<String, dynamic> json) => Question(
+  factory Questions.fromJson(Map<String, dynamic> json) => Questions(
         questionId: json["question_id"],
         answer: json["answer"],
         audioAnswerFile: json["audio_answer_file"],
@@ -65,6 +71,7 @@ class Question {
         points: json["points"],
         scoredPoints: json["scored_points"],
         status: json["status"],
+        rightAnswer: json["right_answer"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -75,5 +82,6 @@ class Question {
         "points": points,
         "scored_points": scoredPoints,
         "status": status,
+        "right_answer": rightAnswer,
       };
 }

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:ielts/dependency/dependency.dart';
-import 'package:ielts/model/sample.dart';
 
 class ApiCalls {
   // final log = logger;
@@ -46,32 +45,6 @@ class ApiCalls {
     return response;
   }
 
-  // Future<http.Response> ({required String subjectid}) async {
-  //   if (dashCtrl.switcherIndex4.value == 0) {
-  //     category = "IELTS";
-  //   } else {
-  //     category = "Academic";
-  //   }
-  //   Map temp = {
-  //     "data": {
-  //       "id": 3,
-  //       "name": "Test 3",
-  //       "duration": "30",
-  //       "exercises_count": "1",
-  //       "user_test": 2
-  //     }
-  //   };
-
-  //   var response = await http.post(
-  //       Uri.parse(
-  //           "https://qicksale.com/ept_backend/api/tests/?subject_id=1&category=IELTS"),
-  //       body: jsonEncode(temp),
-  //       headers: {'Authorization': 'Bearer $token'});
-
-  //   print(response.body);
-  //   return response;
-  // }
-
   Future<http.Response> saveResult({required Map<String, dynamic> data}) async {
     if (dashCtrl.switcherIndex4.value == 0) {
       category = "IELTS";
@@ -80,11 +53,14 @@ class ApiCalls {
     }
     // Map temp = {"category": category, "test_id": testId};
     var post = jsonEncode(data);
-    print(post);
-    var response = await http.post(Uri.parse("${kBaseUrl}save_result/"),
-        body: post, headers: {'Authorization': 'Bearer $token'});
 
-    print(response.body);
+    var response = await http.post(Uri.parse("${kBaseUrl}save_result/"),
+        body: post,
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json'
+        });
+
     return response;
   }
 }

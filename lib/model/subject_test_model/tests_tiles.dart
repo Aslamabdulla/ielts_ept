@@ -4,7 +4,7 @@ import 'test_model/test_model.dart';
 class TestTile {
   bool locked;
   Test data;
-  String tries;
+  String? tries;
   bool timerOff;
   TestTile(
     this.locked,

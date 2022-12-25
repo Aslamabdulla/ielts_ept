@@ -77,3 +77,5 @@ final kSubmitButtonStyle = ButtonStyle(
     backgroundColor:
         const MaterialStatePropertyAll<Color>(Color.fromRGBO(18, 91, 80, 1)),
     fixedSize: MaterialStatePropertyAll<Size>(Size(177.w, 41.h)));
+
+final audioTextStyle = TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w800);

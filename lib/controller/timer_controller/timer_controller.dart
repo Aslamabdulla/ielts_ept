@@ -30,9 +30,9 @@ class TimerController extends GetxController {
         timer.cancel();
         time.value = '00.00';
         timerOnNow.value = false;
-        int testCount = int.parse(tile?.data.userTest ?? "4");
-        testCount--;
-        dashCtrl.testTiles[index]?.data.userTest = testCount.toString();
+        // int testCount = int.parse(tile?.data.userTest ?? "4");
+        // // testCount--;
+        // dashCtrl.testTiles[index]?.data.userTest = testCount?.toString() ?? "";
 
         dashCtrl.update();
         dashCtrl.notifyChildrens();
@@ -52,11 +52,11 @@ class TimerController extends GetxController {
     timer?.cancel();
     time.value = '00.00';
     timerOnNow.value = false;
-    int testCount =
-        int.parse(dashCtrl.testTiles[currentindex.value]?.data.userTest ?? "4");
-    testCount--;
-    dashCtrl.testTiles[currentindex.value]?.data.userTest =
-        testCount.toString();
+    // int testCount =
+    //     int.parse(dashCtrl.testTiles[currentindex.value]?.data.userTest ?? "4");
+    // testCount--;
+    // dashCtrl.testTiles[currentindex.value]?.data.userTest =
+    //     testCount.toString();
 
     dashCtrl.update();
     dashCtrl.notifyChildrens();

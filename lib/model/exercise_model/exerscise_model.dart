@@ -208,8 +208,8 @@ class Type {
     required this.id,
     required this.name,
   });
-  late final int? id;
-  late final String? name;
+  int? id;
+  String? name;
 
   Type.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -11,7 +11,7 @@ import '../controller/dashboard_controller/dashboard_controller.dart';
 ChoiceController choiceCtrl = Get.put(ChoiceController());
 RegistrationController regCtrl = Get.put(RegistrationController());
 DashBoardController dashCtrl = Get.put(DashBoardController(), permanent: true);
-AudioController audioContrl = Get.put(AudioController(), permanent: true);
+AudioController audioContrl = Get.put(AudioController());
 TimerController timerCtrl = Get.put(TimerController(), permanent: true);
 ExerciseController exerciseCtrl =
     Get.put(ExerciseController(), permanent: true);

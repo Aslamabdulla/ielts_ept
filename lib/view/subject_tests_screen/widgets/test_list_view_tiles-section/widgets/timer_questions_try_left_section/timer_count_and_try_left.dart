@@ -70,8 +70,11 @@ class TimerAndTryLeftWidget extends StatelessWidget {
               init: DashBoardController(),
               id: "trycount",
               builder: (dashCtrol) {
-                return Text(
-                    "${dashCtrol.testTiles.value[index]?.data.userTest} Try left",
+                int tries = int.parse(dashCtrol.testTiles[index]?.tries ?? "4");
+                if (tries <= 0) {
+                  tries = 0;
+                }
+                return Text("${dashCtrol.testTiles[index]?.tries} Try left",
                     style: kTextStyleTest);
               }),
         ],
