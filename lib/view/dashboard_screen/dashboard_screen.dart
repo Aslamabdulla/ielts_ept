@@ -13,7 +13,7 @@ import 'package:progress_indicator/progress_indicator.dart';
 
 import 'widget/latest_news_widget/latest_news_widget.dart';
 import 'widget/lessons/lessons_list_view_tile.dart';
-import 'widget/subjects_list_view/subjects_list_view_tile_widget.dart';
+import 'widget/subjects_dashboard_list_view/subjects_list_view_tile_widget.dart';
 import 'widget/username_dashboard_top/username_top_widget.dart';
 
 class HomeScreen extends StatelessWidget {

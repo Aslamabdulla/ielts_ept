@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/model/subject_test_model/tests_tiles.dart';
+import 'package:ielts/view/navigation_router/navigation_route.dart';
 
 class TimerController extends GetxController {
   ValueNotifier<bool> timerOn = ValueNotifier<bool>(true);
@@ -33,10 +34,8 @@ class TimerController extends GetxController {
         // int testCount = int.parse(tile?.data.userTest ?? "4");
         // // testCount--;
         // dashCtrl.testTiles[index]?.data.userTest = testCount?.toString() ?? "";
-
-        dashCtrl.update();
-        dashCtrl.notifyChildrens();
-        dashCtrl.refresh();
+        exerciseCtrl.saveResult();
+        Get.offAll(() => NavigationBottomBarScreen());
       } else {
         int minutes = remainingSeconds ~/ 60;
 
@@ -58,8 +57,8 @@ class TimerController extends GetxController {
     // dashCtrl.testTiles[currentindex.value]?.data.userTest =
     //     testCount.toString();
 
-    dashCtrl.update();
-    dashCtrl.notifyChildrens();
-    dashCtrl.refresh();
+    // dashCtrl.update();
+    // dashCtrl.notifyChildrens();
+    // dashCtrl.refresh();
   }
 }

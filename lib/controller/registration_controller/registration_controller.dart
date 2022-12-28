@@ -7,6 +7,7 @@ import 'package:ielts/main.dart';
 import 'package:ielts/services/api.dart';
 import 'package:ielts/view/dashboard_screen/dashboard_screen.dart';
 import 'package:ielts/view/login_screen/login_screen.dart';
+import 'package:ielts/view/navigation_router/navigation_route.dart';
 
 class RegistrationController extends GetxController {
   String? name;
@@ -54,7 +55,7 @@ class RegistrationController extends GetxController {
           token.value = prefs.getString("token");
 
           await dashCtrl.dashBoardFetch(data: dashCtrl.generalData);
-          Get.offAll(() => const HomeScreen(),
+          Get.offAll(() => NavigationBottomBarScreen(),
               transition: Transition.rightToLeft,
               duration: const Duration(milliseconds: 400));
 
@@ -86,7 +87,7 @@ class RegistrationController extends GetxController {
         prefs.setString("token", postData["data"]["token"]);
         prefs.setString("name", postData["data"]["name"]);
         token.value = prefs.getString("token");
-        print(token);
+
         await dashCtrl.dashBoardFetch(data: dashCtrl.generalData);
         Get.offAll(() => const HomeScreen(),
             transition: Transition.rightToLeft,

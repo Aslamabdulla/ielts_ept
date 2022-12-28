@@ -2,13 +2,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/model/subject_test_model/test_model/test_model.dart';
-
+import 'package:ielts/view/common/common_widgets/notification_widget/notification.dart';
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/exercise_screen/exercise_screen_listening.dart';
+import 'package:ielts/view/exercise_screen_listening/exercise_screen_listening.dart';
+import 'package:ielts/view/exercise_screen_listening/widgets/error_widget/error_widget.dart';
+import 'package:ielts/view/exercise_screen_writing/exercise_screen_writing.dart';
 import 'package:ielts/view/subject_tests_screen/widgets/premium_dialogue_box/dialogue_premium_widget.dart';
 import 'package:ielts/view/subject_tests_screen/widgets/test_list_view_tiles-section/widgets/timer_questions_try_left_section/timer_count_and_try_left.dart';
 
@@ -31,7 +34,7 @@ class TestsListViewTilesWidgetBuilder extends StatelessWidget {
         future: dashCtrl.fetchTests(subjectId: subjectId),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return ErrorWidget();
+            return const ErrorWidgetNetwork(image: "assets/images/404.gif");
           } else if (snapshot.connectionState == ConnectionState.waiting) {
             return Container(
                 width: screenWidth,
@@ -42,7 +45,7 @@ class TestsListViewTilesWidgetBuilder extends StatelessWidget {
                   color: kBlack,
                 ));
           } else if (snapshot.data?.data == null) {
-            return ErrorWidget();
+            return const ErrorWidgetNetwork(image: "assets/images/404.gif");
           } else {
             return Column(
               mainAxisSize: MainAxisSize.max,
@@ -74,50 +77,74 @@ class TestsListViewTilesWidgetBuilder extends StatelessWidget {
 
                     // ValueNotifier tries = ValueNotifier<String>();
                     return Opacity(
-                      opacity: locked ? .55 : 1,
-                      child: GestureDetector(
-                        onTap: () {
-                          if (locked) {
-                            dashCtrl.showpPremiumDialogue();
-                          } else if (int.parse(
-                                  dashCtrl.testTiles[index]?.tries ?? "4") <=
-                              0) {
-                            Get.snackbar("Warning", "Maximum Tries Reaches");
-                          } else if (timerCtrl.timerOnNow.value == false) {
-                            exerciseCtrl.isLoading.value = true;
-                            exerciseCtrl.fetchExercise(
-                                dashCtrl.testTiles[index]?.data.id.toString() ??
-                                    "1");
-                            timerCtrl.startTimer(int.parse(counter) * 60,
-                                dashCtrl.testTiles[index], index);
+                        opacity: locked ? .55 : 1,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (locked) {
+                              dashCtrl.showpPremiumDialogue();
+                            } else if (timerCtrl.timerOnNow.value == false) {
+                              timerCtrl.currentindex.value = index;
+                              timerCtrl.currentSubject.value = subjectId;
+                              exerciseCtrl.initExerserciseScreen();
+                              if (timerCtrl.currentSubject.value == "1") {
+                                exerciseCtrl.currentExerciseIndex.value = 0;
+                                Get.to(() => ExerciseListeningScreen(
+                                      testId: dashCtrl.testTiles[index]?.data.id
+                                              .toString() ??
+                                          "",
+                                    ));
+                              } else if (timerCtrl.currentSubject.value ==
+                                  "4") {
+                                exerciseCtrl.currentExerciseIndex.value = 0;
+                                Get.to(() => ExerciseWritingScreen(
+                                      index: index,
+                                      testId: dashCtrl.testTiles[index]?.data.id
+                                              .toString() ??
+                                          "",
+                                    ));
+                              }
 
-                            Get.to(() => const ExerciseTestSubjectScreen());
-
-                            timerCtrl.currentindex.value = index;
-                            timerCtrl.currentSubject.value = subjectId;
-                            timerCtrl.timerOnNow.value = true;
-                          } else if (timerCtrl.currentindex.value == index &&
-                              timerCtrl.currentSubject.value == subjectId) {
-                            Get.to(() => const ExerciseTestSubjectScreen());
-                            // exerciseCtrl.calculeteTotalExercise(
-                            //     timerCtrl.currentindex.value);
-                          } else {
-                            Get.snackbar(
-                                "Message", "Please Complete Pending Exercise",
-                                colorText: kBlack, backgroundColor: kWhite);
-                          }
-                        },
-                        child: SubjectTestListTileWidget(
-                            index: index,
-                            testName: testName,
-                            color: color,
-                            locked: locked,
-                            subjectId: subjectId,
-                            counter: counter,
-                            exerciseCount: exerciseCount,
-                            tryLeftCount: tryLeftCount.toString()),
-                      ),
-                    );
+                              int tries = int.parse(
+                                  dashCtrl.testTiles[index]?.tries ?? "");
+                              tries--;
+                              dashCtrl.testTiles[index]?.tries =
+                                  tries.toString();
+                            } else if (timerCtrl.currentindex.value == index &&
+                                timerCtrl.currentSubject.value == subjectId) {
+                              Get.to(() => ExerciseListeningScreen(
+                                  testId: dashCtrl.testTiles[index]?.data.id
+                                          .toString() ??
+                                      ""));
+                            } else {
+                              notificationError(
+                                      "Error", "Please complete pending test")
+                                  .show(context);
+                            }
+                          },
+                          child: AnimationConfiguration.staggeredList(
+                              position: index,
+                              delay: const Duration(milliseconds: 100),
+                              child: SlideAnimation(
+                                duration: const Duration(milliseconds: 2500),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                horizontalOffset: 30,
+                                verticalOffset: 300.0,
+                                child: FlipAnimation(
+                                  duration: const Duration(milliseconds: 3000),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  flipAxis: FlipAxis.y,
+                                  child: SubjectTestListTileWidget(
+                                      index: index,
+                                      testName: testName,
+                                      color: color,
+                                      locked: locked,
+                                      subjectId: subjectId,
+                                      counter: counter,
+                                      exerciseCount: exerciseCount,
+                                      tryLeftCount: tryLeftCount.toString()),
+                                ),
+                              )),
+                        ));
                   },
                 ),
                 if (dashCtrl.testTiles.length == 1 ||
@@ -135,19 +162,19 @@ class TestsListViewTilesWidgetBuilder extends StatelessWidget {
   }
 }
 
-class ErrorWidget extends StatelessWidget {
-  const ErrorWidget({
-    Key? key,
-  }) : super(key: key);
+// class ErrorWidget extends StatelessWidget {
+//   const ErrorWidget({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-          width: screenWidth,
-          height: screenHeight,
-          alignment: Alignment.topCenter,
-          child: const Text("Error Occured")),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Container(
+//           width: screenWidth,
+//           height: screenHeight,
+//           alignment: Alignment.topCenter,
+//           child: const Text("Error Occured")),
+//     );
+//   }
+// }

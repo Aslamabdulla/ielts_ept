@@ -18,7 +18,7 @@ class DialogueBoxPremiumWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 5, bottom: 5).r,
       decoration: kboxDecorationDialogue(color),
-      height: 330.h,
+      height: 310.h,
       width: 280.w,
       child: Center(
         child: Column(
@@ -26,23 +26,26 @@ class DialogueBoxPremiumWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  package,
-                  style: centerTextSubjectDialogue,
+                alignment: Alignment.topLeft,
+                child: FittedBox(
+                  child: Text(
+                    package,
+                    style: centerTextSubjectDialogue,
+                  ),
                 )),
             Text(
               "Lörem ipsum birat doskade nån joktigt. Fuliga mynat för att polyning befanas. Pev dide därför att ofun.",
               style: kDialogueWhiteSubText,
               maxLines: 3,
             ),
-            // kHeight5,
+            kHeight3,
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Rs 2000/ Month",
                   style: centerTextSubjectDialogue,
                 )),
+            kHeight3,
             kHeight20,
             Stack(
               alignment: Alignment.center,

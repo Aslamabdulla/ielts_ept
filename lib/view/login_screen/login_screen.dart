@@ -26,50 +26,51 @@ class _LoginScreenScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (overScrolling) {
           overScrolling.disallowIndicator();
           return true;
         },
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              const BackgroundClipperWidget(),
-              SafeArea(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 100).r,
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          "assets/images/logo.png",
-                          height: 100.h,
-                          width: 100.w,
-                        ),
-                        kHeight35,
+        child: Stack(
+          children: [
+            const BackgroundClipperWidget(),
+            SingleChildScrollView(
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100).r,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        "assets/images/logo.png",
+                        height: 100.h,
+                        width: 100.w,
+                      ),
+                      kHeight35,
 
-                        Form(
-                          key: formKey,
-                          child: Column(
-                            children: [
-                              Text(
-                                "Login",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.sp,
-                                    color: kBlack),
-                              ),
-                              kHeight15,
-                              phoneNumber("Phone number"),
-                              kHeight15,
-                              email("Email"),
-                            ],
-                          ),
+                      Form(
+                        key: formKey,
+                        child: Column(
+                          children: [
+                            Text(
+                              "Login",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20.sp,
+                                  color: kBlack),
+                            ),
+                            kHeight15,
+                            phoneNumber("Phone number"),
+                            kHeight15,
+                            email("Email"),
+                          ],
                         ),
+                      ),
 
-                        kHeight35,
-                        buttonWidget(
+                      kHeight35,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0).h,
+                        child: buttonWidget(
                           "Login",
                           325,
                           () {
@@ -83,16 +84,16 @@ class _LoginScreenScreenState extends State<LoginScreen> {
                             // print(regCtrl.phoneNum);
                           },
                         ),
-                        // const Spacer(
-                        //   flex: 3,
-                        // )
-                      ],
-                    ),
+                      ),
+                      // const Spacer(
+                      //   flex: 3,
+                      // )
+                    ],
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );

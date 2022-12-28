@@ -61,6 +61,8 @@ List<IconData> iconDialogue = [
 List<String> iconDialogueText = ["Writing", "Speaking", "Listening", "Reading"];
 final kTextAppBarExercise =
     TextStyle(fontWeight: FontWeight.w600, fontSize: 14.sp, color: kBlack);
+final kTextAppBarResult =
+    TextStyle(fontWeight: FontWeight.w600, fontSize: 18.sp, color: kBlack);
 final kBoxDecorExerciseBox = BoxDecoration(
   color: kWhite,
   boxShadow: [
@@ -71,6 +73,9 @@ final kBoxDecorExerciseBox = BoxDecoration(
   ],
   borderRadius: BorderRadius.circular(10.r),
 );
+final kBoxDecorExerciseImage = BoxDecoration(
+  color: kWhite,
+);
 final kSubmitButtonStyle = ButtonStyle(
     shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r))),
@@ -79,3 +84,22 @@ final kSubmitButtonStyle = ButtonStyle(
     fixedSize: MaterialStatePropertyAll<Size>(Size(177.w, 41.h)));
 
 final audioTextStyle = TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w800);
+final kNotificationTextStyle =
+    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: kRed);
+final kNotificationTextStyleGreen =
+    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: kGreen);
+final kNotificationTextStyleMessage =
+    TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500);
+const kLinearGradientResult = LinearGradient(
+    colors: [
+      rosePink,
+      lavenderBlue,
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops: [0.1, 1]);
+final kMailBoxStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 16.sp,
+  fontWeight: FontWeight.w400,
+);

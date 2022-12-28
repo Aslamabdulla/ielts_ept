@@ -7,7 +7,8 @@ import 'package:ielts/model/audio_model/audio_model.dart';
 import 'package:ielts/dependency/dependency.dart';
 
 class AudioController extends GetxController {
-  // final AudioPlayer player = AudioPlayer();
+  RealtimePlayingInfos? currentPosition;
+  RealtimePlayingInfos? duration;
   final AssetsAudioPlayer audioPlayer = AssetsAudioPlayer.withId("1");
   final String kBaseUrl = "https://qicksale.com/ept_backend/storage/";
   RxString currentUrl = "".obs;
@@ -18,24 +19,19 @@ class AudioController extends GetxController {
   openAudio(int id) async {
     try {
       var currentAudio = audios.firstWhere((element) => element.id == id);
-      // CurrentlyPlaying(fullSongs: fullSongs, index: index).openAudioPlayer(index: index)
-      await audioPlayer.open(currentAudio.audio,
-          autoStart: false,
-          playInBackground: PlayInBackground.enabled,
-          notificationSettings: NotificationSettings(),
-          loopMode: LoopMode.single);
+
+      if (currentAudio.audio.path != kBaseUrl) {
+        await audioPlayer.open(currentAudio.audio,
+            autoStart: false,
+            playInBackground: PlayInBackground.enabled,
+            notificationSettings: const NotificationSettings(),
+            loopMode: LoopMode.single);
+      }
     } on PlatformException catch (t) {
-      var error = t;
-      //mp3 unreachable
-      Get.snackbar("Error", "Unable to play file");
+      Get.snackbar("Error", "Unable to fetch audio");
     }
   }
 
-  durationPlayer() {}
-
-  // String url = exerciseCtrl
-  //         .exerciseData[exerciseCtrl.currentExerciseIndex.value]?.audio ??
-  // "";
   playAudio() async {
     try {
       if (audioPlayer.isPlaying.value) {
@@ -45,7 +41,6 @@ class AudioController extends GetxController {
       }
     } on PlatformException catch (e) {
       error = e;
-      // audioPlayer.stop();
     }
   }
 
@@ -60,8 +55,6 @@ class AudioController extends GetxController {
     } catch (e) {
       var error = e;
     }
-
-    log(audios.value[0].audio.toString());
   }
 
   @override

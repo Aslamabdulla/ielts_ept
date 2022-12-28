@@ -4,11 +4,10 @@ import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/view/common/constants.dart';
 
-Widget choiceWidget() => InkWell(
-      onTap: () {
-        choiceCtrl.isCoiceSelected.value = true;
-      },
+Widget choiceWidget(String text, VoidCallback onPressed, int index) => InkWell(
+      onTap: onPressed,
       child: Container(
+        margin: EdgeInsets.only(bottom: 15.h),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: kWhite, borderRadius: BorderRadius.circular(10)),
@@ -21,14 +20,14 @@ Widget choiceWidget() => InkWell(
               const Spacer(
                 flex: 3,
               ),
-              const Text(
-                "IELTS",
+              Text(
+                text,
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               const Spacer(
                 flex: 2,
               ),
-              choiceCtrl.isCoiceSelected.value
+              choiceCtrl.choiceIndex.value == index
                   ? const Icon(
                       Icons.check_circle,
                       color: kGreen,

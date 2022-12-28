@@ -50,16 +50,16 @@ class CategoryCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           gradient: RadialGradient(
-                              tileMode: TileMode.decal,
+                              // tileMode: TileMode.,
                               // focalRadius: 1,
-                              radius: 5,
-                              stops: [0, 0.1, 0.2, 0.35, 0.5, 1],
+                              radius: 4,
+                              stops: const [0, 0.1, 0.2, 0.35, 0.5, 1],
                               colors: colors,
                               center: Alignment.centerLeft)),
-                      height: 10.h,
-                      width: (Get.width / 4) - 60.h,
+                      height: 8.h,
+                      width: (Get.width / 4) - 70.h,
                     )
-                  : SizedBox()
+                  : const SizedBox()
             ],
           ),
         ),

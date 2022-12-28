@@ -37,6 +37,9 @@ final kWidth20 = SizedBox(
 final kWidth25 = SizedBox(
   width: 25.w,
 );
+final kHeight3 = SizedBox(
+  height: 3.h,
+);
 final kHeight5 = SizedBox(
   height: 5.h,
 );

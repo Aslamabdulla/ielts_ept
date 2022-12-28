@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -28,7 +29,6 @@ class ApiCalls {
     var response = await http.post(Uri.parse("${kBaseUrl}tests/"),
         body: temp, headers: {'Authorization': 'Bearer $token'});
 
-    // print(response.body);
     return response;
   }
 
@@ -46,15 +46,35 @@ class ApiCalls {
   }
 
   Future<http.Response> saveResult({required Map<String, dynamic> data}) async {
+    log(data.toString());
     if (dashCtrl.switcherIndex4.value == 0) {
       category = "IELTS";
     } else {
       category = "Academic";
     }
-    // Map temp = {"category": category, "test_id": testId};
+
     var post = jsonEncode(data);
 
     var response = await http.post(Uri.parse("${kBaseUrl}save_result/"),
+        body: post,
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json'
+        });
+
+    return response;
+  }
+
+  Future<http.Response> getResult({required Map<String, dynamic> data}) async {
+    if (dashCtrl.switcherIndex4.value == 0) {
+      category = "IELTS";
+    } else {
+      category = "Academic";
+    }
+
+    var post = jsonEncode(data);
+
+    var response = await http.post(Uri.parse("${kBaseUrl}get_result/"),
         body: post,
         headers: {
           'Authorization': 'Bearer $token',

@@ -8,7 +8,7 @@ import 'package:ielts/view/common/constants.dart';
 
 AppBar widgetAppBarExercise() {
   return AppBar(
-    leading: backButtonLeadingAppBar(),
+    leading: backButtonLeadingAppBar(false),
     backgroundColor: Colors.transparent,
     foregroundColor: kBlack,
     title: Row(
@@ -33,20 +33,8 @@ AppBar widgetAppBarExercise() {
     actions: [
       TextButton(
         onPressed: () {
-          // exerciseCtrl.saveResult();
-          timerCtrl.timerCancel();
-          Get.back();
-          dashCtrl.fetchTests(subjectId: timerCtrl.currentSubject.value);
-          timerCtrl.timerOnNow.value = false;
-          audioContrl.audioPlayer.pause();
-          int tries = int.parse(
-              dashCtrl.testTiles[timerCtrl.currentindex.value]?.tries ?? "4");
-          tries--;
-          exerciseCtrl.saveResult();
-          dashCtrl.testTiles[timerCtrl.currentindex.value]?.tries =
-              tries.toString();
-
-          dashCtrl.refreshGroup("trycount");
+          exerciseCtrl.isQuitted.value = true;
+          exerciseCtrl.quitTest();
 
           // exerciseCtrl.currentExerciseIndex.value = 0;
         },

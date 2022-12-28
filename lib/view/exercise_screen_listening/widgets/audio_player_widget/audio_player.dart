@@ -37,14 +37,9 @@ class AudioPlayer extends StatelessWidget {
         children: [
           Flexible(
             child: Row(
-              // mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
                   onTap: () {
-                    print("play audioooooo");
-
-                    // audioContrl.player.play();
-                    // audioContrl.openAudio(id);
                     audioContrl.playAudio();
 
                     audioContrl.isPlaying.value = !audioContrl.isPlaying.value;
@@ -79,7 +74,6 @@ class AudioPlayer extends StatelessWidget {
                 kWidth10,
                 audioContrl.audioPlayer.builderRealtimePlayingInfos(
                     builder: (context, infos) {
-                  // audioContrl.convertDuration(infos.currentPosition.toString());
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +81,6 @@ class AudioPlayer extends StatelessWidget {
                       Container(
                           padding: EdgeInsets.only(top: 20.h),
                           width: 280.w,
-                          // height: 5.h,
                           child: ProgressBar(
                             baseBarColor: kGreen.withOpacity(.2),
                             barHeight: 7.h,
@@ -103,8 +96,6 @@ class AudioPlayer extends StatelessWidget {
                             timeLabelTextStyle: TextStyle(color: Colors.black),
                             onSeek: (to) {
                               audioContrl.audioPlayer.seek(to);
-
-                              // print('User selected a new time: $duration');
                             },
                           )),
                       kHeight5,

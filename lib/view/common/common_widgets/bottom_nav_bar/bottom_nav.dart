@@ -17,7 +17,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: kBlack,
-      height: 78.h,
+      height: 80.h,
       width: MediaQuery.of(context).size.width,
       child: GetBuilder<DashBoardController>(
           init: DashBoardController(),

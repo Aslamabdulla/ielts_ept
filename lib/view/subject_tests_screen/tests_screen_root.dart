@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';
-
 import 'package:ielts/view/dashboard_screen/bg_cirle_clipper.dart/bg_circle_clipper.dart';
 import 'package:ielts/view/subject_tests_screen/widgets/app_bar/app_bar.dart';
 
@@ -16,11 +15,13 @@ class SubjectScreen extends StatelessWidget {
   final String subjectId;
   final String name;
   final Color color;
+  final int index;
   const SubjectScreen({
     Key? key,
     required this.subjectId,
     required this.name,
     required this.color,
+    required this.index,
   }) : super(key: key);
 
   @override

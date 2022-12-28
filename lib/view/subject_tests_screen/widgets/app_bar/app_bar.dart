@@ -11,10 +11,11 @@ Widget appBar() => AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
       foregroundColor: kBlack,
-      leading: backButtonLeadingAppBar(),
+      leading: backButtonLeadingAppBar(true),
       title: Text(
         "EPT",
         style: headTextNixmat,
       ),
       centerTitle: true,
     );
+// 

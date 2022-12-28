@@ -1,7 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/main.dart';
@@ -15,8 +16,10 @@ import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/subject_tests_screen/widgets/premium_dialogue_box/dialogue_premium_widget.dart';
 
 class DashBoardController extends GetxController {
+  String imageUrl = "https://qicksale.com/ept_backend/storage/";
   RxInt switcherIndex4 = 0.obs;
   Rx<String?> token = prefs.getString("token").obs;
+  RxList<Subject>? subjectList = <Subject>[].obs;
   RxList<bool> isSelected = [true, false].obs;
   RxInt currentBottomIndex = 0.obs;
   RxInt prevBottomIndex = 0.obs;
@@ -26,20 +29,23 @@ class DashBoardController extends GetxController {
   Rx<String?> userName = "USER".obs;
   Map generalData = {"category": "IELTS", "type": "General"};
   Map academicData = {"category": "IELTS", "type": "Academic"};
-  // DashBoardModel? dashboardData;
-  final dashboardData = Rxn<DashBoardModel>();
+  RxDouble padding = 150.0.h.obs;
+  RxDouble bottomPadding = 0.0.h.obs;
+
+  var dashboardData = Rxn<DashBoardModel>();
   Future<DashBoardModel?> dashBoardFetch({Map? data}) async {
     try {
       data ??= generalData;
-
       final response = await ApiCalls().postRequest(data, "dashboard/");
-      print(token);
       if (response.statusCode == 200 || response.statusCode == 201) {
         token = prefs.getString("token").obs;
-
         var temp = await jsonDecode(response.body);
         userName.value = prefs.getString("name");
         dashboardData.value = DashBoardModel.fromJson(temp);
+        subjectList?.value = dashboardData.value?.data.subjects.map((e) {
+              return e;
+            }).toList() ??
+            [];
         return dashboardData.value;
       } else {
         return null;
@@ -81,7 +87,6 @@ class DashBoardController extends GetxController {
   sort() {
     testTiles.clear();
 
-    String temp = "4";
     if (tests?.data == null) {
       return;
     } else {
@@ -95,11 +100,6 @@ class DashBoardController extends GetxController {
           testTiles.add(
               TestTile(deactivated.value, element, count.toString(), true));
         }
-        for (var element in testTiles) {
-          log(element?.tries?.toString() ?? "null");
-        }
-        // testTiles.add(
-        //     TestTile(false, element, element.userTest?.exercisesCount, true));
       });
     }
   }
@@ -107,10 +107,8 @@ class DashBoardController extends GetxController {
   Future<TestsModel?> fetchTests({required String subjectId}) async {
     try {
       final response = await ApiCalls().postTestSubject(subjectid: subjectId);
-      print(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {
         tests = testModelFromJson(response.body);
-        print(tests?.data?.tests);
 
         sort();
         isLoading.value = false;
@@ -119,7 +117,7 @@ class DashBoardController extends GetxController {
     } catch (e) {
       return null;
     }
-    update();
+    return null;
   }
 
   showpPremiumDialogue() {

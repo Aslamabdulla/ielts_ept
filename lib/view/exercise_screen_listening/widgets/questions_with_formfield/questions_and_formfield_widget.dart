@@ -1,19 +1,24 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/model/exercise_model/exerscise_model.dart';
+import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/exercise_screen/exercise_screen_listening.dart';
+import 'package:ielts/view/exercise_screen_listening/exercise_screen_listening.dart';
 
 class QuestionAndAnswerTextFieldWidget extends StatelessWidget {
   final int index;
   final SubQuestions? subQuestion;
+  final String? imgeUrl;
 
   const QuestionAndAnswerTextFieldWidget({
     Key? key,
     required this.index,
     required this.subQuestion,
+    required this.imgeUrl,
   }) : super(key: key);
 
   @override
@@ -26,10 +31,22 @@ class QuestionAndAnswerTextFieldWidget extends StatelessWidget {
         "";
     exerciseCtrl.mapQuestions();
     return FadeIn(
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
+          imgeUrl != dashCtrl.imageUrl
+              ? index == 0
+                  ? Container(
+                      margin: EdgeInsets.symmetric(vertical: 10.h),
+                      child: Image.network(
+                        imgeUrl ?? "",
+                        errorBuilder: (context, error, stackTrace) {
+                          return SizedBox();
+                        },
+                      ))
+                  : const SizedBox()
+              : SizedBox(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -73,7 +90,6 @@ class QuestionAndAnswerTextFieldWidget extends StatelessWidget {
                     }
 
                     // subQuestion?.type?.name = value;
-                    print(exerciseCtrl.questionData.value[index]?.answer);
                   },
                 ),
         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ielts/dependency/dependency.dart';
 
 import 'package:ielts/view/splash_screen/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       designSize: const Size(390, 844),
       minTextAdapt: true,
       builder: (context, child) => GetMaterialApp(
+        initialBinding: InternetCheckerBinding(),
         title: 'EPT',
         theme: ThemeData(
           textTheme: TextTheme(

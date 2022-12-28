@@ -26,31 +26,31 @@ class LatestNewsWidget extends StatelessWidget {
             if (snapshot.hasError) {
               return const Text("Error Occured");
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return CupertinoActivityIndicator(
-                radius: 20.sp,
-                color: kBlack,
+              return const Center(child: CupertinoActivityIndicator());
+            } else if (snapshot.data == null) {
+              return const Text("No data found");
+            } else {
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount:
+                    dashCtrl.dashboardData.value?.data.latestNews.length ?? 0,
+                physics: const NeverScrollableScrollPhysics(),
+                primary: false,
+                itemBuilder: (context, index) {
+                  var date = dashCtrl
+                      .dashboardData.value?.data.latestNews[index].updatedAt;
+                  String formattedDate =
+                      DateFormat('MMM d,y').format(date ?? DateTime.parse(" "));
+                  String formattedtime =
+                      DateFormat('hh:mm a').format(date ?? DateTime.parse(" "));
+
+                  return SlideInRight(
+                    child: latestNewsColumnTile(
+                        index, formattedDate, formattedtime),
+                  );
+                },
               );
             }
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount:
-                  dashCtrl.dashboardData.value?.data.latestNews.length ?? 0,
-              physics: const NeverScrollableScrollPhysics(),
-              primary: false,
-              itemBuilder: (context, index) {
-                var date = dashCtrl
-                    .dashboardData.value?.data.latestNews[index].updatedAt;
-                String formattedDate =
-                    DateFormat('MMM d,y').format(date ?? DateTime.parse(" "));
-                String formattedtime =
-                    DateFormat('hh:mm a').format(date ?? DateTime.parse(" "));
-
-                return SlideInRight(
-                  child:
-                      latestNewsColumnTile(index, formattedDate, formattedtime),
-                );
-              },
-            );
           }),
     );
   }
