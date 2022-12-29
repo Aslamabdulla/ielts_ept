@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ielts/view/common/common_widgets/background_clipper/background_clipper.dart';
 import 'package:ielts/view/common/common.dart';
 

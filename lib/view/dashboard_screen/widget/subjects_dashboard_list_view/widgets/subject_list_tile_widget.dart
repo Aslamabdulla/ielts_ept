@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:progress_indicator/progress_indicator.dart';
 
 import 'package:ielts/controller/dashboard_controller/dashboard_controller.dart';
-import 'package:ielts/dependency/dependency.dart';
+
 import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';

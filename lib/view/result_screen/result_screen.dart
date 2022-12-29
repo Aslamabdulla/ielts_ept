@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
-
 import 'package:animator/animator.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,6 +11,7 @@ import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/result_screen/widgets/expandable_card_result.dart';
 
 import '../common/common.dart';
+import 'widgets/result_widget/result.dart';
 
 class ResultPageScreen extends StatelessWidget {
   final String testId;
@@ -57,32 +57,26 @@ class ResultPageScreen extends StatelessWidget {
             Center(
               child: Padding(
                 padding: EdgeInsets.only(top: 30.h),
-                child: FutureBuilder(
-                    future: exerciseCtrl.getResults(testId),
-                    builder: (context, snapshot) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SlideFadeTransition(
-                            curve: Curves.elasticOut,
-                            delayStart: const Duration(milliseconds: 500),
-                            animationDuration:
-                                const Duration(milliseconds: 1200),
-                            offset: 2.5,
-                            direction: Direction.horizontal,
-                            child: Text("CHECK YOUR RESULT HERE",
-                                style: TextStyle(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w600)),
-                          ),
-                          kHeight20,
-                          const MyCustomWidget(
-                            points: "",
-                          )
-                        ],
-                      );
-                    }),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SlideFadeTransition(
+                      curve: Curves.elasticOut,
+                      delayStart: const Duration(milliseconds: 500),
+                      animationDuration: const Duration(milliseconds: 1200),
+                      offset: 2.5,
+                      direction: Direction.horizontal,
+                      child: Text("CHECK YOUR RESULT HERE",
+                          style: TextStyle(
+                              fontSize: 16.sp, fontWeight: FontWeight.w600)),
+                    ),
+                    kHeight20,
+                    const MyCustomWidget(
+                      points: "",
+                    )
+                  ],
+                ),
               ),
             ),
           ],
@@ -92,19 +86,15 @@ class ResultPageScreen extends StatelessWidget {
           onTap: () {
             int temp = exerciseCtrl.exerciseData.length;
             int index = exerciseCtrl.currentExerciseIndex.value;
-            if (exerciseCtrl.isQuitted.value) {
+            if (temp - 1 <= index || exerciseCtrl.isQuitted.value) {
               Get.close(2);
+              // Get.close(2);
               exerciseCtrl.currentExerciseIndex.value = 0;
               exerciseCtrl.isQuitted.value = false;
-            }
-            if (temp - 1 > index) {
+              timerCtrl.timerCancel();
+            } else if (temp - 1 > index) {
               exerciseCtrl.nextExercise();
               Get.back();
-            } else {
-              Get.close(2);
-
-              timerCtrl.timerCancel();
-              exerciseCtrl.currentExerciseIndex.value = 0;
             }
           },
           child: Container(
@@ -142,14 +132,10 @@ class ResultPageScreen extends StatelessWidget {
                       ],
                     ),
                     child: Center(
-                      child: Obx(
-                        () => Text(
-                          exerciseCtrl.isQuitted.value
-                              ? "NEXT QUESTION"
-                              : "FINISH TEST",
-                          style: TextStyle(
-                              fontSize: 20.sp, fontWeight: FontWeight.w600),
-                        ),
+                      child: Text(
+                        "FINISH TEST",
+                        style: TextStyle(
+                            fontSize: 20.sp, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -158,95 +144,6 @@ class ResultPageScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-enum Direction { vertical, horizontal }
-
-class SlideFadeTransition extends StatefulWidget {
-  final Widget child;
-
-  final double offset;
-
-  final Curve curve;
-
-  final Direction direction;
-
-  final Duration delayStart;
-
-  final Duration animationDuration;
-
-  SlideFadeTransition({
-    required this.child,
-    this.offset = 1.0,
-    this.curve = Curves.easeIn,
-    this.direction = Direction.vertical,
-    this.delayStart = const Duration(seconds: 0),
-    this.animationDuration = const Duration(milliseconds: 800),
-  });
-
-  @override
-  _SlideFadeTransitionState createState() => _SlideFadeTransitionState();
-}
-
-class _SlideFadeTransitionState extends State<SlideFadeTransition>
-    with SingleTickerProviderStateMixin {
-  late Animation<Offset> _animationSlide;
-
-  late AnimationController _animationController;
-
-  late Animation<double> _animationFade;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: widget.animationDuration,
-    );
-
-    if (widget.direction == Direction.vertical) {
-      _animationSlide = Tween<Offset>(
-              begin: Offset(0, widget.offset), end: const Offset(0, 0))
-          .animate(CurvedAnimation(
-        curve: widget.curve,
-        parent: _animationController,
-      ));
-    } else {
-      _animationSlide = Tween<Offset>(
-              begin: Offset(widget.offset, 0), end: const Offset(0, 0))
-          .animate(CurvedAnimation(
-        curve: widget.curve,
-        parent: _animationController,
-      ));
-    }
-
-    _animationFade =
-        Tween<double>(begin: -1.0, end: 1.0).animate(CurvedAnimation(
-      curve: widget.curve,
-      parent: _animationController,
-    ));
-
-    Timer(widget.delayStart, () {
-      _animationController.forward();
-    });
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _animationFade,
-      child: SlideTransition(
-        position: _animationSlide,
-        child: widget.child,
       ),
     );
   }

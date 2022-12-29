@@ -1,10 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 import 'package:ielts/dependency/dependency.dart';
-
 import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/dashboard_screen/widget/latest_news_widget/widgets/widgets.dart';
 import 'package:intl/intl.dart';
@@ -26,7 +25,11 @@ class LatestNewsWidget extends StatelessWidget {
             if (snapshot.hasError) {
               return const Text("Error Occured");
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CupertinoActivityIndicator());
+              return Center(
+                  child: CupertinoActivityIndicator(
+                color: kBlack,
+                radius: 20.sp,
+              ));
             } else if (snapshot.data == null) {
               return const Text("No data found");
             } else {

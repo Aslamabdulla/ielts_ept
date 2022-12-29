@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/model/exercise_model/exerscise_model.dart';
-import 'package:ielts/view/common/common.dart';
+
 import 'package:ielts/view/common/constants.dart';
 
 class QuestionTextFieldWidgetWriting extends StatelessWidget {

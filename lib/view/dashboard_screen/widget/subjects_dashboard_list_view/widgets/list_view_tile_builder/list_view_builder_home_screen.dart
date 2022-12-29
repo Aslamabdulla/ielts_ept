@@ -5,12 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:ielts/controller/dashboard_controller/dashboard_controller.dart';
-import 'package:ielts/dependency/dependency.dart';
+
 import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/subject_tests_screen/tests_screen_root.dart';
 
-import 'widgets/subject_list_tile_widget.dart';
+import '../subject_list_tile_widget.dart';
 
 class ListViewSubjectsWidgetBuilder extends StatelessWidget {
   AsyncSnapshot<DashBoardModel?> snapshot;

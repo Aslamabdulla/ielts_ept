@@ -2,12 +2,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/model/exercise_model/exerscise_model.dart';
-import 'package:ielts/view/common/common.dart';
+
 import 'package:ielts/view/common/constants.dart';
-import 'package:ielts/view/exercise_screen_listening/exercise_screen_listening.dart';
 
 class QuestionAndAnswerTextFieldWidget extends StatelessWidget {
   final int index;
@@ -42,11 +40,11 @@ class QuestionAndAnswerTextFieldWidget extends StatelessWidget {
                       child: Image.network(
                         imgeUrl ?? "",
                         errorBuilder: (context, error, stackTrace) {
-                          return SizedBox();
+                          return const SizedBox();
                         },
                       ))
                   : const SizedBox()
-              : SizedBox(),
+              : const SizedBox(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

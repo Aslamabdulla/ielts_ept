@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
+
 import 'dart:math';
 
 import 'package:get/get.dart';
@@ -45,7 +45,6 @@ class ExerciseController extends GetxController {
         exerciseModel = ExerciseModel.fromJson(jsonDecode(response.body));
 
         exerciseData.value = exerciseModel?.data?.exercises.map((e) {
-          print(e.audio);
           e.question = parseHtmlString(e.question ?? "");
 
           return e;
@@ -181,7 +180,9 @@ class ExerciseController extends GetxController {
               }).toList() ??
               [];
       isLoading.value = false;
-    } catch (e) {}
+    } catch (e) {
+      print("map error");
+    }
   }
 
   addPrevAnswerdQuestion() {

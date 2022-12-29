@@ -8,8 +8,6 @@ import 'package:ielts/view/common/common_widgets/scrol_behaviour/scroll_behaviou
 
 import 'package:ielts/view/dashboard_screen/bg_cirle_clipper.dart/bg_circle_clipper.dart';
 import 'package:ielts/view/dashboard_screen/widget/app_bar_widget/app_bar_widgets.dart';
-import 'package:intl/intl.dart';
-import 'package:progress_indicator/progress_indicator.dart';
 
 import 'widget/latest_news_widget/latest_news_widget.dart';
 import 'widget/lessons/lessons_list_view_tile.dart';
@@ -37,10 +35,8 @@ class HomeScreen extends StatelessWidget {
               SafeArea(
                 child: ListView(
                   shrinkWrap: true,
-
                   physics: const NeverScrollableScrollPhysics(),
                   primary: false,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const AppBarDashBoard(),
                     kHeight20,

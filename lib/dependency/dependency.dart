@@ -20,7 +20,6 @@ TimerController timerCtrl =
 ExerciseController exerciseCtrl =
     Get.put<ExerciseController>(ExerciseController(), permanent: true);
 
-// Logger logger = Logger();
 class InternetCheckerBinding implements Bindings {
   @override
   void dependencies() {

@@ -12,8 +12,6 @@ import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/exercise_screen_listening/exercise_screen_listening.dart';
 import 'package:ielts/view/exercise_screen_listening/widgets/error_widget/error_widget.dart';
 import 'package:ielts/view/exercise_screen_writing/exercise_screen_writing.dart';
-import 'package:ielts/view/subject_tests_screen/widgets/premium_dialogue_box/dialogue_premium_widget.dart';
-import 'package:ielts/view/subject_tests_screen/widgets/test_list_view_tiles-section/widgets/timer_questions_try_left_section/timer_count_and_try_left.dart';
 
 import '../../../../../common/common.dart';
 import '../subject_list_tile_widget/list_tile_widget.dart';
@@ -161,20 +159,3 @@ class TestsListViewTilesWidgetBuilder extends StatelessWidget {
         });
   }
 }
-
-// class ErrorWidget extends StatelessWidget {
-//   const ErrorWidget({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Container(
-//           width: screenWidth,
-//           height: screenHeight,
-//           alignment: Alignment.topCenter,
-//           child: const Text("Error Occured")),
-//     );
-//   }
-// }

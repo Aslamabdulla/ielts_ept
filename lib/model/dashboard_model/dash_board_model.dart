@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final dashBoardModel = dashBoardModelFromJson(jsonString);
-
 import 'dart:convert';
 
 DashBoardModel dashBoardModelFromJson(String str) =>

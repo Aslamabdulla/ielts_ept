@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       designSize: const Size(390, 844),
       minTextAdapt: true,
       builder: (context, child) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         initialBinding: InternetCheckerBinding(),
         title: 'EPT',
         theme: ThemeData(

@@ -7,7 +7,7 @@ import 'package:ielts/model/dashboard_model/dash_board_model.dart';
 
 import 'package:ielts/view/common/constants.dart';
 
-import 'list_view_builder_home_screen.dart';
+import 'widgets/list_view_tile_builder/list_view_builder_home_screen.dart';
 
 class SubjectListViewTileWidget extends StatelessWidget {
   const SubjectListViewTileWidget({

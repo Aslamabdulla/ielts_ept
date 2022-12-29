@@ -73,7 +73,7 @@ final kBoxDecorExerciseBox = BoxDecoration(
   ],
   borderRadius: BorderRadius.circular(10.r),
 );
-final kBoxDecorExerciseImage = BoxDecoration(
+const kBoxDecorExerciseImage = BoxDecoration(
   color: kWhite,
 );
 final kSubmitButtonStyle = ButtonStyle(

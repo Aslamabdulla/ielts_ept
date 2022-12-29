@@ -82,9 +82,6 @@ Container latestNewsColumnTile(
                       formattedDate.toString(),
                       style: textLatestNewsText10,
                     ),
-                    // SizedBox(
-                    //   width: screenWidth / 3.5,
-                    // ),
                     Text(
                       formattedtime,
                       style: textLatestNewsText10,

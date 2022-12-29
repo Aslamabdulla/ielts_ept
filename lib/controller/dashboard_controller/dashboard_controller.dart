@@ -127,10 +127,10 @@ class DashBoardController extends GetxController {
         content: Column(
           children: [
             const DialogueBoxPremiumWidget(
-                color: KDialogueboxColor1, package: "Full Package"),
+                color: kDialogueboxColor1, package: "Full Package"),
             kHeight15,
             const DialogueBoxPremiumWidget(
-                color: KDialogueboxColor2, package: "Custom"),
+                color: kDialogueboxColor2, package: "Custom"),
           ],
         ));
   }

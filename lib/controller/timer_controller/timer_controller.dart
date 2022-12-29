@@ -31,9 +31,7 @@ class TimerController extends GetxController {
         timer.cancel();
         time.value = '00.00';
         timerOnNow.value = false;
-        // int testCount = int.parse(tile?.data.userTest ?? "4");
-        // // testCount--;
-        // dashCtrl.testTiles[index]?.data.userTest = testCount?.toString() ?? "";
+
         exerciseCtrl.saveResult();
         Get.offAll(() => NavigationBottomBarScreen());
       } else {
@@ -51,14 +49,5 @@ class TimerController extends GetxController {
     timer?.cancel();
     time.value = '00.00';
     timerOnNow.value = false;
-    // int testCount =
-    //     int.parse(dashCtrl.testTiles[currentindex.value]?.data.userTest ?? "4");
-    // testCount--;
-    // dashCtrl.testTiles[currentindex.value]?.data.userTest =
-    //     testCount.toString();
-
-    // dashCtrl.update();
-    // dashCtrl.notifyChildrens();
-    // dashCtrl.refresh();
   }
 }

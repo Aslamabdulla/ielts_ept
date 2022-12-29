@@ -6,6 +6,8 @@ import 'package:ielts/view/common/common_widgets/back_button_app_bar/back_button
 import 'package:ielts/view/common/common.dart';
 import 'package:ielts/view/common/constants.dart';
 
+import '../../../common/common_widgets/dialogue_warning_test/warning_dialogue.dart';
+
 AppBar widgetAppBarExercise() {
   return AppBar(
     leading: backButtonLeadingAppBar(false),
@@ -34,8 +36,10 @@ AppBar widgetAppBarExercise() {
       TextButton(
         onPressed: () {
           exerciseCtrl.isQuitted.value = true;
-          exerciseCtrl.quitTest();
 
+          exerciseCtrl.resultPageShow.value
+              ? dialogueWarning()
+              : exerciseCtrl.quitTest();
           // exerciseCtrl.currentExerciseIndex.value = 0;
         },
         child: Text(

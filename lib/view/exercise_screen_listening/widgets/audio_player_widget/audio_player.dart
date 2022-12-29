@@ -1,12 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ui';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/view/common/common.dart';
-import 'package:progress_indicator/progress_indicator.dart';
 
 import 'package:ielts/dependency/dependency.dart';
 import 'package:ielts/view/common/constants.dart';
@@ -93,7 +91,8 @@ class AudioPlayer extends StatelessWidget {
                             total: infos.duration,
                             timeLabelType: TimeLabelType.remainingTime,
                             timeLabelLocation: TimeLabelLocation.none,
-                            timeLabelTextStyle: TextStyle(color: Colors.black),
+                            timeLabelTextStyle:
+                                const TextStyle(color: Colors.black),
                             onSeek: (to) {
                               audioContrl.audioPlayer.seek(to);
                             },
@@ -130,11 +129,6 @@ class AudioPlayer extends StatelessWidget {
                                 ),
                               ],
                             );
-                            // return Text(
-                            //  ""
-                            //   style: TextStyle(
-                            //       fontSize: 10.sp, fontWeight: FontWeight.w800),
-                            // );
                           }),
                     ],
                   );

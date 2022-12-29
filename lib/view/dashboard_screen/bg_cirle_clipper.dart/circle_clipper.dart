@@ -20,6 +20,8 @@ import 'package:flutter/material.dart';
 /////////Custom Painer class/////////
 
 class CircleBackground extends StatelessWidget {
+  const CircleBackground({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

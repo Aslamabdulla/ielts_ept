@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:ielts/services/api.dart';
-import 'package:ielts/view/common/common_widgets/background_clipper/background_clipper.dart';
+
 import 'package:ielts/view/common/common_widgets/background_onboarding/background_onboarding.dart';
 import 'package:ielts/view/common/common_widgets/button_widget/button_widget.dart';
-import 'package:ielts/view/common/common.dart';
-import 'package:ielts/view/course_selection_screen/widgets/choice.dart';
+
 import 'package:ielts/view/registration_screen/widgets/text_form_fileds.dart';
 
 import '../../dependency/dependency.dart';
@@ -78,10 +74,6 @@ class _LoginScreenScreenState extends State<LoginScreen> {
                             if (formKey.currentState!.validate()) {
                               regCtrl.loginUser();
                             }
-                            // ApiCalls().postRequest("register");
-                            // print(regCtrl.email);
-                            // print(regCtrl.name);
-                            // print(regCtrl.phoneNum);
                           },
                         ),
                       ),

@@ -46,7 +46,6 @@ class ApiCalls {
   }
 
   Future<http.Response> saveResult({required Map<String, dynamic> data}) async {
-    log(data.toString());
     if (dashCtrl.switcherIndex4.value == 0) {
       category = "IELTS";
     } else {

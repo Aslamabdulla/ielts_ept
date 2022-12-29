@@ -17,8 +17,8 @@ const Color greenyBlue = Color.fromRGBO(76, 188, 153, 1);
 const Color rhinoBlue = Color.fromRGBO(36, 58, 115, 1);
 const Color cranberryPink = Color.fromRGBO(218, 71, 108, 1);
 const Color deepSeaGreen = Color.fromRGBO(18, 91, 80, 1);
-const Color KDialogueboxColor1 = Color.fromRGBO(235, 123, 123, 1);
-const Color KDialogueboxColor2 = Color.fromRGBO(23, 195, 170, 1);
+const Color kDialogueboxColor1 = Color.fromRGBO(235, 123, 123, 1);
+const Color kDialogueboxColor2 = Color.fromRGBO(23, 195, 170, 1);
 final kWidth3 = SizedBox(
   width: 3.w,
 );
@@ -63,6 +63,10 @@ final kHeight35 = SizedBox(
 );
 final kHeight40 = SizedBox(
   height: 40.h,
+);
+final kHeight200 = SizedBox(
+  height: 200.h,
+  width: 200.w,
 );
 List<Color> colors = [
   pinkishRed,

@@ -1,19 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:ielts/dependency/dependency.dart';
+
 import 'package:ielts/view/common/common.dart';
+
 import 'package:ielts/view/common/constants.dart';
 import 'package:ielts/view/dashboard_screen/bg_cirle_clipper.dart/bg_circle_clipper.dart';
+import 'package:ielts/view/exercise_screen_listening/widgets/activity_indicator/activity_indicator.dart';
 import 'package:ielts/view/exercise_screen_listening/widgets/app_bar_exercise/app_bar_exercise.dart';
-import 'package:ielts/view/exercise_screen_listening/widgets/audio_player_widget/audio_player.dart';
+
 import 'package:ielts/view/exercise_screen_listening/widgets/error_widget/error_widget.dart';
-import 'package:ielts/view/exercise_screen_listening/widgets/questions_with_formfield/questions_and_formfield_widget.dart';
-import 'package:ielts/view/exercise_screen_writing/widgets/form_field_and_questions.dart';
-import 'package:ielts/view/result_screen/result_screen.dart';
+
+import 'widgets/buider_exercise_writing_widget/exercise_writing_builder.dart';
+import 'widgets/submit_button/submit_button.dart';
 
 class ExerciseWritingScreen extends StatefulWidget {
   final String testId;
@@ -53,12 +56,7 @@ class _ExerciseWritingScreenState extends State<ExerciseWritingScreen> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Column(
-                              children: [
-                                widgetAppBarExercise(),
-                                activityindicator(),
-                              ],
-                            );
+                            return const ActivityIndicatorWidget();
                           } else if (snapshot.hasError) {
                             exerciseCtrl.resultPageShow.value = false;
                             return const ErrorWidgetNetwork(
@@ -100,40 +98,8 @@ class _ExerciseWritingScreenState extends State<ExerciseWritingScreen> {
                                               style: kText12Weight600),
                                         ),
                                         kHeight10,
-                                        Container(
-                                          width: 390.w,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 12.w, vertical: 15.h),
-                                          decoration: kBoxDecorExerciseBox,
-                                          child: Form(
-                                            key: formKey,
-                                            child: ListView.separated(
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                itemBuilder: (context, index) {
-                                                  return QuestionTextFieldWidgetWriting(
-                                                    imgeUrl:
-                                                        "$exerciseCtrl.imageUrl${snapshot.data?[exerciseCtrl.currentExerciseIndex.value]?.image ?? ""}",
-                                                    index: index,
-                                                    subQuestion: exerciseCtrl
-                                                        .exerciseData[exerciseCtrl
-                                                            .currentExerciseIndex
-                                                            .value]
-                                                        ?.subQuestions?[index],
-                                                  );
-                                                },
-                                                separatorBuilder:
-                                                    (context, index) =>
-                                                        kHeight15,
-                                                itemCount: exerciseCtrl
-                                                        .exerciseData[exerciseCtrl
-                                                            .currentExerciseIndex
-                                                            .value]
-                                                        ?.subQuestions
-                                                        ?.length ??
-                                                    0),
-                                          ),
-                                        ),
+                                        buildExersiceWritingWidget(
+                                            snapshot, formKey),
                                       ],
                                     ),
                                   ),
@@ -151,54 +117,7 @@ class _ExerciseWritingScreenState extends State<ExerciseWritingScreen> {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: floatingActionButtonSubmit()),
+          floatingActionButton: floatingActionButtonSubmit(context, formKey)),
     );
-  }
-
-  Container activityindicator() {
-    return Container(
-        width: screenWidth,
-        height: screenHeight,
-        alignment: Alignment.center,
-        child: CupertinoActivityIndicator(
-          radius: 20.r,
-          color: kBlack,
-        ));
-  }
-
-  ElevatedButton floatingActionButtonSubmit() {
-    return ElevatedButton(
-        style: kSubmitButtonStyle,
-        onPressed: () async {
-          if (exerciseCtrl.resultPageShow.value) {
-            exerciseCtrl.textControllerChange.value = false;
-            int temp = exerciseCtrl.exerciseData.length;
-            int index = exerciseCtrl.currentExerciseIndex.value;
-            if (temp - 1 > index) {
-              // exerciseCtrl.addPrevAnswerdQuestions();
-              exerciseCtrl.addPrevAnswerdQuestion();
-              exerciseCtrl.nextExercise();
-              formKey.currentState?.reset();
-              exerciseCtrl.textControllerChange.value = true;
-            } else {
-              var text;
-              exerciseCtrl.saveResult();
-              audioContrl.audioPlayer.pause();
-              exerciseCtrl.resultPageShow.value
-                  ? Get.to(
-                      () => ResultPageScreen(
-                          testId: exerciseCtrl
-                                  .exerciseData[
-                                      exerciseCtrl.currentExerciseIndex.value]
-                                  ?.testId
-                                  .toString() ??
-                              ""),
-                      duration: const Duration(milliseconds: 400),
-                      transition: Transition.rightToLeft)
-                  : text = "r";
-            }
-          }
-        },
-        child: const Text("SUBMIT"));
   }
 }
