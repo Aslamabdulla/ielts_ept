@@ -1,16 +1,59 @@
-# ielts
 
-A new Flutter project.
+<div align="center">
 
-## Getting Started
+  <img src="readme_assets/logo.png" alt="logo" width="200" height="auto" />
+  <h1>EPT IELTS </h1>
+  
+  <p>
+   AN APP T0 MAKE IELTS TEST ONLINE:
+   
+  </p>
+  
+  
+<!-- Badges -->
 
-This project is a starting point for a Flutter application.
+ 
+</div>
 
-A few resources to get you started if this is your first Flutter project:
+<br />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<!-- Table of Contents -->
+# DOCREA FUNCTIONALITIES
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- ## PACKAGES USED
+  - Html
+  - Get (Getx State Management)
+  - Flutter_staggered_animations
+  - Flutter_screenutil
+  - Connectivity Plus
+  - Internet Connection Checker
+  - Http
+  - Assets Audio Player
+  - Shared Preferences
+  - Progress Indicator
+  - String Similariry
+
+ 
+  <!-- About the Project -->
+    
+ 
+  ## FUNCTIONALITIES
+  - Registration 
+  - Login (If existing User)
+  - Dashboard
+  - Listening and Writing Tests
+  - Listen Audio 
+  - View Scores
+  - Internet Connection Checking
+
+## ADDITIONAL INFO
+  ## FOR APK  PLEASE LOOK IN TO REPOSITORY "apk-android -release" file ( NB: PLEASE REMOVE "apk-android -release" file WHEN YOU CLONE THE REPOSITORY)
+   
+ 
+
+  
+
+<!-- About the Project -->
+## :star2: About the Project
+
+
