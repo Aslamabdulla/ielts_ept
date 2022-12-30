@@ -47,7 +47,7 @@
   - Internet Connection Checking
 
 ## ADDITIONAL INFO
-  ## FOR APK  PLEASE LOOK IN TO REPOSITORY "apk-android -release" file ( NB: PLEASE REMOVE "apk-android -release" file WHEN YOU CLONE THE REPOSITORY)
+  ## FOR APK  PLEASE LOOK IN TO REPOSITORY "app-release.apk" file ( NB: PLEASE REMOVE "app-release.apk" file WHEN YOU CLONE THE REPOSITORY)
    
  
 
