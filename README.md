@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <img src="readme_assets/logo.png" alt="logo" width="200" height="auto" />
+  <img src="assets/logo.png](https://github.com/Aslamabdulla/bromusic_getx/blob/3766a23ff3f1795a8993ab2044040724a15107d2/assets/logo.png" alt="logo" width="200" height="auto" />
   <h1>EPT IELTS </h1>
   
   <p>
@@ -18,7 +18,7 @@
 <br />
 
 <!-- Table of Contents -->
-# DOCREA FUNCTIONALITIES
+# EPT IELTS FUNCTIONALITIES
 
 - ## PACKAGES USED
   - Html
